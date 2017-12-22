@@ -2,25 +2,29 @@
 
 const Controller = require('egg').Controller;
 const Vue = require('vue');
-const renderer = require('vue-server-renderer').createRenderer();
+const vr = require('vue-server-renderer');
+const fs = require('fs');
+const ti = require('app/public/vue/mobile-vue-text-input');
 
 class HomeController extends Controller {
+  async mo() {
+    const render = vr.createRenderer({
+      template: fs.readFileSync('app/public/pages/mo.html', 'utf-8'),
+    });
+    const app = new Vue({
+      data: {
+        value: 'Momojie',
+      },
+      template: '<mobile-vue-text-input/>',
+      components: { ti },
+    });
+    render.renderToString(app, (err, html) => {
+      this.ctx.body = html;
+    });
+  }
+
   async index() {
-      const app = new Vue({
-          data: {
-              name: 'Momojie'
-          },
-          template: `<div>Hello: {{ name }}</div>`
-      });
-      renderer.renderToString(app, (err, html) => {
-          this.ctx.res.end(`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head><title>Hello</title></head>
-        <body>${html}</body>
-      </html>
-    `);
-      })
+    this.ctx.body = 'hi, egg';
   }
 }
 
