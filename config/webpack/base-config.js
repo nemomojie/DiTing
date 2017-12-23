@@ -1,10 +1,13 @@
 'use strict';
 
+const path = require('path');
+
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
-  entry: '/app/public/entry/index.js',
   output: {
-    filename: 'mo-test-webpack.bundle.js',
-    path: '/dist/',
+    filename: '[name].js',
+    path: path.join(__dirname, '../../app/dist'), // 纯字符串会被解析成文件系统的绝对路径
   },
   module: {
     rules: [

@@ -2,8 +2,8 @@
     <input
         type="text"
         class="mobile-vue-text-input"
-        :value="value"
-        v-on:input="onInput"/>
+        v-model="value"
+        @input="onInput"/>
 </template>
 
 <script>

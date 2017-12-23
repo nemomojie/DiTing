@@ -1,24 +1,16 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const Vue = require('vue');
-const vr = require('vue-server-renderer');
-const fs = require('fs');
-const ti = require('app/public/vue/mobile-vue-text-input');
+const { createBundleRenderer } = require('vue-server-renderer');
+const template = require('fs').readFileSync('app/public/pages/mo.html', 'utf-8');
 
 class HomeController extends Controller {
   async mo() {
-    const render = vr.createRenderer({
-      template: fs.readFileSync('app/public/pages/mo.html', 'utf-8'),
+    const renderer = createBundleRenderer(require('../dist/vue-ssr-server-bundle.json'), {
+      template,
     });
-    const app = new Vue({
-      data: {
-        value: 'Momojie',
-      },
-      template: '<mobile-vue-text-input/>',
-      components: { ti },
-    });
-    render.renderToString(app, (err, html) => {
+    renderer.renderToString(this.ctx, (err, html) => {
+      if (err) throw err;
       this.ctx.body = html;
     });
   }
