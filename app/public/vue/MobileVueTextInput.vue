@@ -2,7 +2,7 @@
     <input
         type="text"
         class="mobile-vue-text-input"
-        v-model="value"
+        v-model="inputValue"
         @input="onInput"/>
 </template>
 
@@ -14,9 +14,17 @@
                 default: '',
             }
         },
-        onInput: function(event) {
-            this.$emit('mobile-vue-text-input-input', event.target.value);
+        methods: {
+            onInput: function (event) {
+                this.$emit('update:value', this.inputValue);
+                this.$emit('mobile-vue-text-input-input', event.target.value);
+            },
         },
+        data: function() {
+            return {
+                inputValue: this.value
+            };
+        }
     }
 </script>
 
