@@ -7,18 +7,24 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1513774152400_3296';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [
+    'testmid',
+  ];
 
   // mongo config
   config.mongo = {
     host: '',
-    port: ''
+    port: '',
   };
 
   // redis config
   config.redis = {
     host: '',
-    port: ''
+    port: '',
+  };
+
+  config.testmid = {
+    name: 'momojie',
   };
 
   return config;
