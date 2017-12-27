@@ -1,0 +1,21 @@
+'use strict';
+
+module.exports = appInfo => {
+
+  const config = {};
+
+  config.eggVueWebpack = {
+    client: {
+      config: require('../build/webpack/client-config'),
+      publicPath: '/public/dist',
+      manifestName: '/public/dist/vue-ssr-client-manifest.json',
+    },
+    server: {
+      config: require('../build/webpack/server-config'),
+      publicPath: '/public/dist',
+      bundleName: '/public/dist/vue-ssr-server-bundle.json',
+    },
+  };
+
+  return config;
+};
