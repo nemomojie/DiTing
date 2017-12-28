@@ -2,48 +2,39 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   async create (user) {
-    return (await this.ctx.model.User({
+    return (await this.app.model.User({
       username: user.username,
-      password: ctx.genHash(user.password),
+      password: await this.ctx.genHash(user.password),
       name: user.name
-    }).save()).toObject()
+    }).save()).toObject();
+  };
+  async getById (id) {
+    return this.app.model.User.findOne({
+      _id: id
+    });
   };
   async getByName (username) {
-    return this.ctx.model.User.findOne({
+    return this.app.model.User.findOne({
       username
     }).lean();
   };
-  async getById (id) {
-    return this.ctx.model.User.findOne({
-      _id: id
-    })
+  async updatePasswordByOldPassword (id, oldPassword, newPassword) {
+    return this.app.model.User.findOneAndUpdate({
+      _id: id,
+      password: await this.ctx.genHash(oldPassword)
+    }, {
+      password: await this.ctx.genHash(newPassword)
+    }, { new: true }).lean();
   };
-  async updatePassword (username, password) {
-    return this.ctx.model.User.findOneAndUpdate({
-      username
-    }, {
-      password: ctx.genHash(password),
-      modifiedTime: new Date()
-    }, { new: true }).lean()
-  }
-  async updatePasswordByOldPassword (oldPassword, newPassword) {
-    return this.ctx.model.User.findOneAndUpdate({
-      _id: this.ctx.authUser._id,
-      password: ctx.genHash(oldPassword)
-    }, {
-      password: ctx.genHash(newPassword),
-      modifiedTime: new Date()
-    }, { new: true }).lean()
-  }
-  async update (user) {
-    const authId = this.ctx.authUser._id
-    return this.ctx.model.User.findOneAndUpdate({
-      _id: authId
-    }, {
-      name: user.name,
-      username: user.username,
-      modifiedTime: new Date()
-    }, { new: true }).lean()
+  async delete (id) {
+    return this.app.model.User.remove({
+      _id: id
+    });
+  };
+  async deleteByName (username) {
+    return this.app.model.User.remove({
+      username: username
+    });
   }
 }
 

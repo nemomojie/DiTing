@@ -7,25 +7,27 @@
     "egg": "^2.0.0",
     "egg-redis": "^1.0.2",
     "egg-scripts": "^2.1.0",
+    "egg-mock": "^3.13.0",
+    "egg-mongoose": "^2.1.1",
+    "egg-bcrypt": "^1.0.0",
+    "egg-oauth2-server": "latest",
+    "egg-passport": "latest",
+    "passport-local": "0.1.x",
     "vue": "^2.5.13",
-    "vue-server-renderer": "^2.5.13"
+    "vue-server-renderer": "^2.5.13",
+    "config": "^1.24.0",
+    "redis": "^2.7.1",
+    "mongoose": "^4.7.7",
+    "mocha": "^3.2.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
     "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
-    "egg-mock": "^3.13.0",
-    "egg-mongoose": "^2.1.1",
-    "egg-redis": "^1.0.2",
-    "egg-bcryp": "^1.0.0",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^5.1.0",
-    "webstorm-disable-index": "^1.2.0",
-    "config": "^1.24.0",
-    "redis": "^2.7.1",
-    "mongoose": "^4.7.7",
-    "mocha": "^3.2.0"
+    "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
     "node": ">=8.9.0"
