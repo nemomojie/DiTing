@@ -12,12 +12,9 @@ module.exports = appInfo => {
 
   const config = exports = {};
 
-  config.middleware = [
-    'eggWdm',
-  ];
-
   config.eggWdm = {
     wdm: wdm(compilers, { publicPath: '/public/dist/', serverSideRender: true }),
+    match: '/public/dist/',
   };
 
   return config;

@@ -14,5 +14,7 @@ module.exports = options => {
     await wdm(ctx.req, ctx.res, next);
   }
 
+  eggWdm.webpack = wdm;
+
   return eggWdm;
 };
