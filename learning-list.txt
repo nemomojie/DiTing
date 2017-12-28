@@ -1,3 +1,6 @@
+async/await:
+http://www.ruanyifeng.com/blog/2015/05/async.html
+
 webpack:
 https://webpack.github.io/docs/tutorials/getting-started/
 https://doc.webpack-china.org

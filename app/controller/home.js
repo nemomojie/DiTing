@@ -3,8 +3,8 @@
 const Controller = require('egg').Controller;
 const { createBundleRenderer } = require('vue-server-renderer');
 const template = require('fs').readFileSync('app/public/pages/mo.html', 'utf-8');
-const serverBundle = require('../public/dist/vue-ssr-server-bundle.json');
 const clientManifest = require('../public/dist/vue-ssr-client-manifest.json');
+const serverBundle = require('../public/dist/vue-ssr-server-bundle.json');
 
 class HomeController extends Controller {
   async mo() {
