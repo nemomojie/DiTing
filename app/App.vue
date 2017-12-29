@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <h1>Big Hello {{name}}!</h1>
+        <h1>Hello {{name}}!</h1>
         <MobileVueTextInput :value.sync="name" @mobile-vue-text-input-input="updateName"/>
     </div>
 </template>

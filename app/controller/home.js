@@ -12,7 +12,6 @@ class HomeController extends Controller {
     renderer.renderToString(this.ctx, (err, html) => {
       if (err) throw err;
       this.ctx.body = html;
-      console.log('ok');
     });
   }
 

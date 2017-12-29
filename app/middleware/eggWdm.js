@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = options => {
+module.exports = (options, app) => {
   const wdm = options.wdm;
 
   async function eggWdm(ctx, next) {
@@ -13,8 +13,6 @@ module.exports = options => {
 
     await wdm(ctx.req, ctx.res, next);
   }
-
-  eggWdm.webpack = wdm;
 
   return eggWdm;
 };

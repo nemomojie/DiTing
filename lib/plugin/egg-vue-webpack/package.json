@@ -1,0 +1,10 @@
+{
+  "name": "egg-vue-webpack",
+  "version": "0.0.1",
+  "eggPlugin": {
+    "name": "eggVueWebpack",
+    "dependencies": [],
+    "optionalDependencies": [],
+    "env": [ "local" ]
+  }
+}
