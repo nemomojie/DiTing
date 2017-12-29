@@ -56,8 +56,8 @@ module.exports = app => {
         userId: user.id
       };
       await app.redis.hmset('accessToken:' + accessToken.accessToken, accessToken);
-      const accessTokenExpiresAt = parseInt((token.accessTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
-      await app.redis.expire('accessToken:' + accessToken.accessToken, accessTokenExpiresAt);
+      const accessTokenExpire = parseInt((token.accessTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
+      await app.redis.expire('accessToken:' + accessToken.accessToken, accessTokenExpire);
 
       if (token.refreshToken) {
         const refreshToken = {
@@ -68,8 +68,12 @@ module.exports = app => {
           userId: user.id
         };
         await app.redis.hmset('refreshToken:' + refreshToken.refreshToken, refreshToken);
-        const refreshTokenExpiresAt = parseInt((token.refreshTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
-        await app.redis.expire('refreshToken:' + refreshToken.refreshToken, refreshTokenExpiresAt);
+        const refreshTokenExpire = parseInt((token.refreshTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
+        await app.redis.expire('refreshToken:' + refreshToken.refreshToken, refreshTokenExpire);
+
+        await app.redis.set('accessTokenByRefreshToken:' + refreshToken.refreshToken, accessToken.accessToken);
+        await app.redis.expire('accessTokenByRefreshToken:' + refreshToken.refreshToken, accessTokenExpire);
+
         return {
           accessToken: accessToken.accessToken,
           accessTokenExpiresAt: accessToken.expiresAt,
@@ -135,13 +139,16 @@ module.exports = app => {
     }
 
     async revokeToken(token) {
-      const refreshToken = this.getRefreshToken(token.refreshToken);
-      if (refreshToken) {
-        await app.redis.hdel('refreshToken:' + token.refreshToken, ['refreshToken', 'expiresAt', 'scope', 'clientId', 'userId']);
+      const result = await app.redis.del('refreshToken:' + token.refreshToken);
+      if (result === 1) {
+        const accessTokenKey = await app.redis.get('accessTokenByRefreshToken:' + token.refreshToken);
+        if (accessTokenKey) {
+          await app.redis.del('accessToken:' + accessTokenKey);
+          await app.redis.del('accessTokenByRefreshToken:' + token.refreshToken);
+        }
         return true;
-      } else {
-        return false;
       }
+      return false;
     }
 
     async validateScope(user, client, scope) {

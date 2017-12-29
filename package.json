@@ -6,6 +6,7 @@
   "dependencies": {
     "egg": "^2.0.0",
     "egg-redis": "^1.0.2",
+    "egg-session-redis": "latest",
     "egg-scripts": "^2.1.0",
     "egg-mock": "^3.13.0",
     "egg-mongoose": "^2.1.1",
@@ -15,9 +16,6 @@
     "passport-local": "0.1.x",
     "vue": "^2.5.13",
     "vue-server-renderer": "^2.5.13",
-    "config": "^1.24.0",
-    "redis": "^2.7.1",
-    "mongoose": "^4.7.7",
     "mocha": "^3.2.0"
   },
   "devDependencies": {

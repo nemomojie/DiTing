@@ -12,6 +12,11 @@ exports.redis = {
   package: 'egg-redis'
 };
 
+exports.sessionRedis = {
+  enable: true,
+  package: 'egg-session-redis',
+};
+
 exports.bcrypt = {
   enable: true,
   package: 'egg-bcrypt'
