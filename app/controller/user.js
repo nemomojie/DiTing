@@ -1,6 +1,6 @@
 'use strict';
 
-const BaseController = require('../core/base');
+const BaseController = require('../core/base-controller');
 
 class UserController extends BaseController {
   async create () {

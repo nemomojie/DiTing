@@ -11,6 +11,8 @@ module.exports = app => {
   // index
   router.get('/', controller.home.index);
 
+  app.restful('resources', ['all'], controller.resource);
+
   // user
   router.get('/user/:id', controller.user.getById);
   router.get('/user/:username', controller.user.getByName);

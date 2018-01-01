@@ -5,8 +5,8 @@ module.exports = app => {
   const ClientSchema = new mongoose.Schema({
     clientId: {
       type: String,
-      unique: true,
       required: true,
+      unique: true,
       index: true
     },
     clientSecret: {
@@ -22,6 +22,8 @@ module.exports = app => {
     username: {
       type: String
     }
+  }, {
+    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
   });
   return mongoose.model('Client', ClientSchema)
 };

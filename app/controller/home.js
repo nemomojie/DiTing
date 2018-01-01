@@ -1,10 +1,10 @@
 'use strict';
 
-const BaseController = require('../core/base');
+const RestController = require('../core/base-controller');
 const Vue = require('vue');
 const renderer = require('vue-server-renderer').createRenderer();
 
-class HomeController extends BaseController {
+class HomeController extends RestController {
   async index() {
     const app = new Vue({
       data: {

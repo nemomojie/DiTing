@@ -8,12 +8,12 @@ exports.mongoose = {
 };
 
 exports.redis = {
-  enable: true,
+  enable: false,
   package: 'egg-redis'
 };
 
 exports.sessionRedis = {
-  enable: true,
+  enable: false,
   package: 'egg-session-redis',
 };
 
