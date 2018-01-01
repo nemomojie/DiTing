@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import MobileVueTextInput from './public/vue/MobileVueTextInput.vue'
+    import MobileVueTextInput from './components/MobileVueTextInput.vue'
 
     export default {
         data: function() {

@@ -7,14 +7,18 @@ module.exports = appInfo => {
   config.eggVueWebpack = {
     client: {
       config: require('../build/webpack/client-config'),
-      publicPath: '/public/dist',
+      publicPath: '/public/dist/',
       manifestName: '/public/dist/vue-ssr-client-manifest.json',
     },
     server: {
       config: require('../build/webpack/server-config'),
-      publicPath: '/public/dist',
+      publicPath: '/public/dist/',
       bundleName: '/public/dist/vue-ssr-server-bundle.json',
     },
+  };
+
+  config.development = {
+    ignoreDirs: [ '../app/view' ],
   };
 
   return config;
