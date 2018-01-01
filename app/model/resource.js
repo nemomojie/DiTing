@@ -2,23 +2,22 @@
 
 module.exports = app => {
   const mongoose = app.mongoose;
-  const UserSchema = new mongoose.Schema({
-    username: {
+  const ResourceSchema = new mongoose.Schema({
+    name: {
       type: String,
-      required: true,
       unique: true,
-      index: true
+      required: true
     },
-    password: {
+    title: {
       type: String,
       required: true
     },
-    name: {
+    content: {
       type: String,
       required: true
     }
   }, {
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
   });
-  return mongoose.model('User', UserSchema)
+  return mongoose.model('Resource', ResourceSchema)
 };
