@@ -6,7 +6,7 @@ module.exports = appInfo => {
 
   config.eggVueWebpack = {
     client: {
-      config: require('../build/webpack/client-config'),
+      config: require('../build/webpack/client-config-dev'),
       publicPath: '/public/dist/',
       manifestName: '/public/dist/vue-ssr-client-manifest.json',
     },
