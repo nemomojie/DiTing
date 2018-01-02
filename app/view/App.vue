@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <h1>Hello {{name}}!</h1>
-        <MobileVueTextInput :value.sync="name" @mobile-vue-text-input-input="updateName"/>
+        <MobileVueTextInput :value.sync="name"
+                            :label="username"
+                            @mobile-vue-text-input-input="updateName"/>
     </div>
 </template>
 
@@ -11,7 +13,8 @@
     export default {
         data: function() {
             return {
-                name: 'nobody'
+                name: 'nobody',
+                username: 'Username',
             };
         },
         components: {

@@ -1,9 +1,12 @@
 <template>
-    <input
-        type="text"
-        class="mobile-vue-text-input"
-        v-model="inputValue"
-        @input="onInput"/>
+    <div class="mobile-vue-text-input">
+        <div class="mobile-vue-text-input-label">{{label}}</div>
+        <div class="mobile-vue-text-input-input">
+            <input type="text" class="mobile-vue-text-input-input-input"
+            v-model="inputValue" @input="onInput"/>
+            <div class="mobile-vue-text-input-input-hint"/>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -12,6 +15,10 @@
             value: {
                 type: String,
                 default: '',
+            },
+            label: {
+                type: String,
+                default: 'Label',
             }
         },
         methods: {
@@ -28,19 +35,10 @@
     }
 </script>
 
-<style>
+<style scoped lang="less">
     .mobile-vue-text-input {
-        height: 30px;
-        line-height: 30px;
-        box-sizing: border-box;
-        padding: 0 15px 0 30px;
-        border: 1px solid #e3e3e3;
-        color: #2c3e50;
-        outline: none;
-        border-radius: 15px;
-        margin-right: 10px;
-        transition: border-color 0.2s ease;
-        background-size: 20px;
-        vertical-align: middle !important;
+        &-label {
+            font-size: 1.2rem;
+        }
     }
 </style>
