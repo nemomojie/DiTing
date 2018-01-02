@@ -3,24 +3,28 @@
 const { Service } = require('egg');
 
 class RestService extends Service {
-  constructor(ctx, model, options) {
+  constructor(ctx, options) {
     super(ctx);
     this.init();
     this.req = ctx.req;
     this.res = ctx.res;
     this.serviceName = this.pathName.substr('service.'.length);
-    if (!model) {
-      const modelName = this.serviceName.substring(0,1).toUpperCase() + this.serviceName.substring(1);
-      model = ctx.app.model[modelName];
-      if (!model) {
-        ctx.throw(500, 'No suiable model');
-      }
-    }
-    this.mongoModel = model;
-
 
     options = options || {};
     this.updateOptions = options.updateOptions;
+    let model = options.model;
+    if (!model) {
+      const actions = this.serviceName.split('.');
+      let obj = this.app.model;
+      actions.forEach((key, index) => {
+        key = key.substring(0,1).toUpperCase() + key.substring(1);
+        obj = obj[key];
+        if (!obj) ctx.throw(500, `model '${this.serviceName}' not exists`);
+      });
+      model = obj;
+    }
+    if (!model) ctx.throw(500, 'model not exists');
+    this.mongoModel = model;
 
     this.allFilters = this.filterable(this.populates, {});
     this.queryFilters = this.filterable(this.filters, this.subFilters);
@@ -57,26 +61,24 @@ class RestService extends Service {
   };
 
   async getById(id) {
-    return await this.mongoModel.findById(id).lean().exec();
+    return await this.filter(this.mongoModel.findById(id), true).lean().exec();
   };
 
   async getByCondition(condition) {
-    return await this.mongoModel.findOne(condition).lean().exec();
+    return await this.filter(this.mongoModel.findOne(condition), true).lean().exec();
   };
 
   async getByIds(ids) {
-    return await this.mongoModel.find()
-      .where('_id').in(ids)
+    return await this.filter(this.mongoModel.find().where('_id').in(ids), true)
       .lean().exec();
   };
 
   async getAll() {
-    return await this.mongoModel.find().lean().exec();
+    return await this.filter(this.mongoModel.find(), true).lean().exec();
   };
 
   async getByQuery() {
-    let mongoQuery = this.filter(this.mongoModel.find());
-    return await mongoQuery.lean().exec();
+    return await this.filter(this.mongoModel.find(), false).lean().exec();
   }
 
   async updateById(id, update, option) {
@@ -96,14 +98,8 @@ class RestService extends Service {
     return await this.mongoModel.remove(condition);
   };
 
-  filter(mongoQuery) {
+  filter(mongoQuery, detail) {
     const self = this;
-    let detail = false;
-    // filter by id
-    if (this.ctx.params.id) {
-      mongoQuery = this.findById(ctx.params.id);
-      detail = true
-    }
 
     const reqDatas = [this.req.body, this.req.query, this.req.headers];
     reqDatas.forEach((reqData) => {
@@ -134,13 +130,7 @@ class RestService extends Service {
         }
         const field = key.split(this.SPLIT_WORD);
         const filterFunction = field[1] || 'equals';
-        let data = this.parseData(filterFunction, val);
-
-        if (filterFunction === 'in' || filterFunction === 'nin') {
-          data = data.split(',');
-        }
-
-        return subFilters[filterFunction](data, mongoQuery.where(field[0]));
+        return subFilters[filterFunction](this.parseData(filterFunction, val), mongoQuery.where(field[0]));
       },
       contains: (key, mongoQuery) => {
         if (key in filters) return true;
@@ -152,20 +142,33 @@ class RestService extends Service {
   };
 
   queryFunc(key) {
-    return (val, mongoQuery) => {
-      return mongoQuery[key](val);
+    return (args, mongoQuery) => {
+      if (!(args instanceof Array)) {
+        args = [args];
+      }
+      return mongoQuery[key].apply(mongoQuery, args);
     };
   }
 
   parseData(filterFunction, data) {
     if (data === true && data === 'true') {
-      return true;
+      return [true];
     } else if (data === false && data === 'false') {
-      return false;
+      return [false];
     } else if (filterFunction === 'limit' || filterFunction === 'skip') {
-      return parseInt(data);
+      return [parseInt(data)];
+    } else if (filterFunction === 'populate') {
+      const leftIndex = data.indexOf('[');
+      const rightIndex = data.indexOf(']');
+      if (leftIndex >= 0 && rightIndex >= 0) {
+        return [data.substring(0, leftIndex), data.substring(leftIndex + 1, rightIndex)]
+      } else {
+        return [data];
+      }
+    } else if (filterFunction === 'in' || filterFunction === 'nin') {
+      return [data.split(',')];
     }
-    return data;
+    return [data];
   };
 }
 module.exports = RestService;

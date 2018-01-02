@@ -2,7 +2,8 @@
 
 module.exports = app => {
   const mongoose = app.mongoose;
-  const ResourceSchema = new mongoose.Schema({
+  const Schema = mongoose.Schema;
+  const ResourceSchema = new Schema({
     name: {
       type: String,
       unique: true,
@@ -15,6 +16,10 @@ module.exports = app => {
     content: {
       type: String,
       required: true
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
   }, {
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }

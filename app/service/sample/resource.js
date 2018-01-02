@@ -1,4 +1,4 @@
-const RestService = require('../core/rest-service');
+const RestService = require('../../core/rest-service');
 
 class ResourceService extends RestService {
 }

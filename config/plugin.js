@@ -8,12 +8,12 @@ exports.mongoose = {
 };
 
 exports.redis = {
-  enable: true,
+  enable: false,
   package: 'egg-redis'
 };
 
 exports.sessionRedis = {
-  enable: true,
+  enable: false,
   package: 'egg-session-redis',
 };
 
@@ -30,4 +30,9 @@ exports.oAuth2Server = {
 exports.passport = {
   enable: true,
   package: 'egg-passport',
+};
+
+exports.validate = {
+  enable: true,
+  package: 'egg-validate',
 };

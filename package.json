@@ -14,9 +14,10 @@
     "egg-bcrypt": "^1.0.0",
     "egg-oauth2-server": "latest",
     "egg-passport": "latest",
+    "egg-validate": "latest",
     "passport-local": "0.1.x",
     "vue": "^2.5.13",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
     "vue-server-renderer": "^2.5.13",
     "webpack-hot-middleware": "^2.21.0"
   },

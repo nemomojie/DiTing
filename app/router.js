@@ -12,7 +12,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/mo', controller.home.mo);
 
-  app.restful('resources', ['all'], controller.resource);
+  app.restful('resources', ['all'], controller.sample.resource);
 
   // user
   router.get('/user/:id', controller.user.getById);
