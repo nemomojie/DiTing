@@ -10,11 +10,11 @@ module.exports = app => {
 
   // index
   router.get('/', controller.home.index);
-  router.get('/app', controller.home.appIndex);
-  router.get('/app/A', controller.home.appIndex);
-  router.get('/app/B', controller.home.appIndex);
+  router.redirect('/app', '/app/main');
+  router.get('/app/login', controller.home.appIndex);
+  router.get('/app/main', controller.home.appIndex);
 
-  app.restful('resources', ['all'], controller.sample.resource);
+  app.restful('resources', [ 'all' ], controller.sample.resource);
 
   // user
   router.get('/user/:id', controller.user.getById);
