@@ -4,6 +4,9 @@
         <MobileVueTextInput :value.sync="name"
                             :label="username"
                             @mobile-vue-text-input-input="updateName"/>
+        <router-link to="/A">A</router-link>
+        <router-link to="/B">B</router-link>
+        <router-view></router-view>
     </div>
 </template>
 

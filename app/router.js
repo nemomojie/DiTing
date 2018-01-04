@@ -10,7 +10,9 @@ module.exports = app => {
 
   // index
   router.get('/', controller.home.index);
-  router.get('/mo', controller.home.mo);
+  router.get('/app', controller.home.appIndex);
+  router.get('/app/A', controller.home.appIndex);
+  router.get('/app/B', controller.home.appIndex);
 
   app.restful('resources', ['all'], controller.sample.resource);
 

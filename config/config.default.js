@@ -17,19 +17,19 @@ module.exports = appInfo => {
   };
 
   config.bcrypt = {
-    saltRounds: 10
+    saltRounds: 10,
   };
 
   // mongo config
   config.mongoose = {
-    url: 'mongodb://127.0.0.1/di-ting'
+    url: 'mongodb://127.0.0.1/di-ting',
   };
 
   // redis config
   config.redis = {
     client: {
-      port: 6379,          // Redis port
-      host: '127.0.0.1',   // Redis host
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
       password: null,
       db: 0,
     },
@@ -37,7 +37,7 @@ module.exports = appInfo => {
 
   config.oAuth2Server = {
     debug: config.env === 'local',
-    grants: ['password', 'client_credentials', 'refresh_token']
+    grants: [ 'password', 'client_credentials', 'refresh_token' ],
   };
 
   return config;

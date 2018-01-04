@@ -4,12 +4,12 @@
 // exports.static = true;
 exports.mongoose = {
   enable: true,
-  package: 'egg-mongoose'
+  package: 'egg-mongoose',
 };
 
 exports.redis = {
-  enable: false,
-  package: 'egg-redis'
+  enable: true,
+  package: 'egg-redis',
 };
 
 exports.sessionRedis = {
@@ -19,7 +19,7 @@ exports.sessionRedis = {
 
 exports.bcrypt = {
   enable: true,
-  package: 'egg-bcrypt'
+  package: 'egg-bcrypt',
 };
 
 exports.oAuth2Server = {

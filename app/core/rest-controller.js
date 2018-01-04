@@ -23,7 +23,7 @@ class RestController extends BaseController {
     }
     if (!service) this.error('service not exists');
     this.restService = service;
-  };
+  }
 
   async index() {
     const resources = await this.restService.getByQuery();

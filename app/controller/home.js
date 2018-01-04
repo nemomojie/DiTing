@@ -2,16 +2,15 @@
 
 const BaseController = require('../core/base-controller');
 const { createBundleRenderer } = require('vue-server-renderer');
-const template = require('fs').readFileSync('app/public/pages/mo.html', 'utf-8');
+const template = require('fs').readFileSync('app/view/index.html', 'utf-8');
 
 class HomeController extends BaseController {
-  async mo() {
+  async appIndex() {
     const renderer = createBundleRenderer(this.app.vueServerBundle, { template, clientManifest: this.app.vueClientManifest });
     renderer.renderToString(this.ctx, (err, html) => {
       if (err) throw err;
       this.ctx.body = html;
     });
-    console.log('aa');
   }
 
   async index() {
