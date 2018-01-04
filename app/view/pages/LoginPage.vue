@@ -1,6 +1,8 @@
 <template>
   <div class="mobile-vue-login-page mobile-vue-page">
-    <div class="mobile-vue-login-page-bg"/>
+    <div class="mobile-vue-login-page-bg">
+      <img class="mobile-vue-login-page-bg-img img-responsive" src="/public/images/bg.jpeg"/>
+    </div>
     <div class="mobile-vue-login-page-logo"/>
     <div class="mobile-vue-login-page-form">
       <div class="mobile-vue-login-page-form-avatar">
@@ -44,8 +46,6 @@
       position: absolute;
       left: 0;
       top: 0;
-      .background-image(url('/public/images/bg.jpeg'));
-      .background-size(cover);
       .opacity(0.5);
       width: 100%;
       height: 100%;

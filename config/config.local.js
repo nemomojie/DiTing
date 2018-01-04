@@ -11,7 +11,7 @@ module.exports = appInfo => {
       manifestName: '/public/dist/vue-ssr-client-manifest.json',
     },
     server: {
-      config: require('../build/webpack/server-config'),
+      config: require('../build/webpack/server-config-dev'),
       publicPath: '/public/dist/',
       bundleName: '/public/dist/vue-ssr-server-bundle.json',
     },

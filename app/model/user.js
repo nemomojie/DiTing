@@ -7,18 +7,18 @@ module.exports = app => {
       type: String,
       required: true,
       unique: true,
-      index: true
+      index: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   }, {
-    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
+    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' },
   });
-  return mongoose.model('User', UserSchema)
+  return mongoose.model('User', UserSchema);
 };

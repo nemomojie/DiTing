@@ -8,7 +8,11 @@ class HomeController extends BaseController {
   async appIndex() {
     const renderer = createBundleRenderer(this.app.vueServerBundle, { template, clientManifest: this.app.vueClientManifest });
     renderer.renderToString(this.ctx, (err, html) => {
-      if (err) throw err;
+      if (err) {
+        if (err.code === 404) {
+          this.notFound(err.message);
+        }
+      }
       this.ctx.body = html;
     });
   }
@@ -26,7 +30,7 @@ class HomeController extends BaseController {
         this.success(user);
       }
     }
-    this.error();
+    this.error('username or password is wrong');
   }
 
   async logout() {

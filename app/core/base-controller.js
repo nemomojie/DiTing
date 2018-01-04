@@ -14,7 +14,7 @@ class BaseController extends Controller {
     if (!data) {
       this.notFound('Not found exist resource');
     }
-    const accept = this.req.headers['accept'] || '*/*';
+    const accept = this.req.headers.accept || '*/*';
     switch (accept) {
       case 'application/json':
       default:

@@ -6,8 +6,6 @@
 module.exports = app => {
   const { router, controller, oAuth2Server } = app;
 
-  const loginAuth = app.middlewares.loginAuth();
-
   // index
   router.get('/', controller.home.index);
   router.redirect('/app', '/app/main');
@@ -28,13 +26,9 @@ module.exports = app => {
 
   // oauth
   // router.get('/login', controller.home.loginPage);
-  router.post('/login', app.passport.authenticate('local', { successRedirect: '/authCallback' }));
+  router.post('/login', app.passport.authenticate('local', { successRedirect: '/app/main' }));
   // TODO callback after login
   router.get('/authCallback', controller.home.index);
   router.get('/logout', controller.home.logout);
   router.post('/oauth/token', oAuth2Server.token());
-
-  // test route
-  router.get('/login/test', loginAuth, controller.home.index);
-  router.get('/oauth/test', oAuth2Server.authenticate(), controller.home.index);
 };

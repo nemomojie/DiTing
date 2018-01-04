@@ -7,19 +7,19 @@ import B from './components/B.vue';
 
 Vue.use(Router);
 
-export function createRouter () {
-    return new Router({
-        mode: 'history',
-        routes: [
-            {
-                path: '/login',
-                component: LoginPage,
-            },
-            {
-                path: '/main',
-                component: B,
-            }
-        ],
-        base: '/app/'
-    })
+export function createRouter() {
+  return new Router({
+    mode: 'history',
+    routes: [
+      {
+        path: '/login',
+        component: LoginPage,
+      },
+      {
+        path: '/main',
+        component: B,
+      }
+    ],
+    base: '/app/',
+  });
 }

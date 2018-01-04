@@ -2,9 +2,10 @@
 
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const baseConfig = require('./client-config.js');
+const clientBase = require('./client-config.js');
+const devBase = require('./base-client-dev');
 
-module.exports = merge(baseConfig, {
+module.exports = merge(clientBase, devBase, {
   entry: [ 'webpack-hot-middleware/client' ],
   plugins: [ new webpack.HotModuleReplacementPlugin() ],
 });

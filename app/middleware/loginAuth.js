@@ -1,11 +1,17 @@
 'use strict';
 
 module.exports = options => {
+
+  const pattern = options.match;
+  const rediectUrl = options.redirectUrl;
+
   return async function loginAuth(ctx, next) {
-    const hasLogin = await ctx.isAuthenticated();
-    if (!hasLogin) {
-      ctx.throw(401, 'Please login.');
+    if (pattern.test(ctx.req.url)) {
+      const hasLogin = await ctx.isAuthenticated();
+      if (!hasLogin) {
+        ctx.redirect(rediectUrl);
+      }
     }
     return await next();
-  }
+  };
 };
