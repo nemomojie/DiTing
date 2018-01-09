@@ -98,6 +98,48 @@ class RestService extends Service {
     return await this.mongoModel.remove(condition);
   };
 
+  async getWithRef(id, refName) {
+    const resource = await this.mongoModel.findById(id).populate(refName).lean().exec();
+    return resource ? resource[refName] : null;
+  };
+
+  async updateWithNewRef(id, refName, newRef, option) {
+    const updateOptions = option || this.updateOptions;
+    const refModelName = this.mongoModel.schema.obj[refName]['ref'];
+    const refModel = this.app.model[refModelName];
+    // create new ref resource
+    const newReference = (await refModel.create(newRef)).toObject();
+    // update ref id
+    const updateObject = {};
+    updateObject[refName] = newReference._id;
+    await this.updateById(id, updateObject, updateOptions);
+    return newReference;
+  };
+
+  async updateWithRef(id, refName, updateRef, option) {
+    const updateOptions = option || this.updateOptions;
+    const refModelName = this.mongoModel.schema.obj[refName]['ref'];
+    const refModel = this.app.model[refModelName];
+    // get resource
+    const resource = await this.getById(id);
+    // update ref object
+    await refModel.findByIdAndUpdate(resource[refName], updateRef, updateOptions);
+  };
+
+  async deleteWithRef(id, refName, option) {
+    const updateOptions = option || this.updateOptions;
+    const refModelName = this.mongoModel.schema.obj[refName]['ref'];
+    const refModel = this.app.model[refModelName];
+    // get resource
+    const resource = await this.getById(id);
+    // delete ref resource
+    await refModel.findByIdAndRemove(resource[refName]);
+    // update ref id
+    const updateObject = {};
+    updateObject[refName] = null;
+    await this.updateById(id, updateObject, updateOptions);
+  };
+
   filter(mongoQuery, detail) {
     const self = this;
 
