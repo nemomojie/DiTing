@@ -3,9 +3,9 @@
 const BaseController = require('../core/base-controller');
 
 class ClientController extends BaseController {
-  async create () {
+  async create() {
     const body = this.ctx.request.body;
-    const client = await this.service.client.getById(body.clientId)
+    const client = await this.service.client.getById(body.clientId);
     if (client) {
       this.error('This client has been signed up');
     }
@@ -13,18 +13,18 @@ class ClientController extends BaseController {
     this.created(newClient);
   }
 
-  async getById () {
-    const client = await this.service.client.getById(ctx.params.id)
+  async getById() {
+    const client = await this.service.client.getById(ctx.params.id);
     if (client === null) {
       this.error({
         code: 401,
-        msg: 'client id is wrong'
-      })
+        msg: 'client id is wrong',
+      });
     }
-    this.success(client)
+    this.success(client);
   }
 
-  async update () {
+  async update() {
     const body = this.ctx.request.body;
     const updateClient = await this.service.client.update(body);
     this.success(updateClient);

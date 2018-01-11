@@ -19,7 +19,7 @@
     },
     methods: {
       onClick: function(event) {
-        console.log('click btn');
+        this.$emit('click');
       }
     }
   }
@@ -33,7 +33,6 @@
       .hide-text-overflow();
 
       &:active {
-        color: @text-normal;
         background: #e6e8ea;
       }
     }

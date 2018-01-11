@@ -1,7 +1,6 @@
 'use strict';
 
 const LocalStrategy = require('passport-local').Strategy;
-const auth = require('./app/middleware/loginAuth');
 
 module.exports = app => {
   const isProd = app.config.env === 'prod';
@@ -39,6 +38,4 @@ module.exports = app => {
       return existUser;
     });
   }
-
-  app.use(auth({ match: /^\/app\/main/, redirectUrl: '/app/login' }));
 };

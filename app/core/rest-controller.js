@@ -15,7 +15,7 @@ class RestController extends BaseController {
     if (!service) {
       const actions = this.controllerName.split('.');
       let obj = this.service;
-      actions.forEach(key => {
+      actions.forEach((key, index) => {
         obj = obj[key];
         if (!obj) this.error(`service '${this.controllerName}' not exists`);
       });
@@ -31,7 +31,9 @@ class RestController extends BaseController {
   }
 
   async show(id) {
-    this.check(this.ctx.params.id, 'Params id is missing');
+    if (!this.ctx.params.id) {
+      this.badRequest('Params id is missing');
+    }
     const resource = await this.restService.getById(this.ctx.params.id);
     this.resolveRespond(resource);
   }
@@ -53,46 +55,22 @@ class RestController extends BaseController {
     if (this.updateRule) {
       this.ctx.validate(this.updateRule);
     }
-    this.check(this.ctx.params.id, 'Params id is missing');
+    if (!this.ctx.params.id) {
+      this.badRequest('Params id is missing');
+    }
     // Remove ObjectId from update object
     if (this.req.body._id && this.req.body._id === this.ctx.params.id) {
       delete this.req.body._id;
     }
     const result = await this.restService.updateById(this.ctx.params.id, this.req.body);
-    this.resolveRespond(result);
-  }
-
-  async destroy() {
-    this.check(this.ctx.params.id, 'Params id is missing');
-    const result =  await this.restService.deleteById(this.ctx.params.id);
-    this.resolveRespond(result);
-  }
-
-  async getRef() {
-    this.check(this.ctx.params.id, 'Params id is missing');
-    this.check(this.ctx.params.refName, 'Params refName is missing');
-    const reference = await this.restService.getWithRef(this.ctx.params.id, this.ctx.params.refName);
-    this.resolveRespond(reference);
-  }
-
-  async createRef() {
-    this.check(this.ctx.params.id, 'Params id is missing');
-    this.check(this.ctx.params.refName, 'Params refName is missing');
-    const reference = await this.restService.updateWithNewRef(this.ctx.params.id, this.ctx.params.refName, this.req.body);
-    this.resolveRespond(reference, true);
-  }
-
-  async updateRef() {
-    this.check(this.ctx.params.id, 'Params id is missing');
-    this.check(this.ctx.params.refName, 'Params refName is missing');
-    await this.restService.updateWithRef(this.ctx.params.id, this.ctx.params.refName, this.req.body);
     this.resolveRespond('success');
   }
 
-  async destroyRef() {
-    this.check(this.ctx.params.id, 'Params id is missing');
-    this.check(this.ctx.params.refName, 'Params refName is missing');
-    await this.restService.deleteWithRef(this.ctx.params.id, this.ctx.params.refName);
+  async destroy() {
+    if (!this.ctx.params.id) {
+      this.badRequest('Params id is missing');
+    }
+    const result = await this.restService.deleteById(this.ctx.params.id);
     this.resolveRespond('success');
   }
 }

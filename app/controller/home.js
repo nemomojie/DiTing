@@ -11,6 +11,8 @@ class HomeController extends BaseController {
       if (err) {
         if (err.code === 404) {
           this.notFound(err.message);
+        } else {
+          throw err;
         }
       }
       this.ctx.body = html;
@@ -30,7 +32,7 @@ class HomeController extends BaseController {
         this.success(user);
       }
     }
-    this.error('username or password is wrong');
+    this.error('Username or password is wrong');
   }
 
   async logout() {

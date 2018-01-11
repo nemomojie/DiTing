@@ -10,13 +10,13 @@
         <div class="mobile-vue-login-page-form-avatar-name"/>
       </div>
       <div class="mobile-vue-login-page-form-username mobile-vue-login-page-form-input">
-        <input v-model="username" type="text" placeholder="Username"/>
+        <input v-model="username" type="text" placeholder="Username" class="form-control input-lg"/>
       </div>
       <div class="mobile-vue-login-page-form-password mobile-vue-login-page-form-input">
-        <input v-model="password" type="password" placeholder="Password"/>
+        <input v-model="password" type="password" placeholder="Password" class="form-control input-lg"/>
       </div>
       <div class="mobile-vue-login-page-form-login">
-        <mobile-vue-button label="Login"/>
+        <mobile-vue-button label="Login" @click="login"/>
       </div>
     </div>
   </div>
@@ -33,6 +33,24 @@
     },
     components: {
       MobileVueButton
+    },
+    methods: {
+      login() {
+        this.$ajax.post('/login', {username: this.username, password: this.password})
+          .then(res => {})
+          .catch(err => {
+            const opts = {
+              content: err.response.data.message,
+              canDismiss: true,
+              onDismiss: this.onDis,
+            };
+            this.$alert(opts);
+          })
+      },
+
+      onDis() {
+        console.log(this);
+      }
     }
   }
 </script>
@@ -62,25 +80,21 @@
       .justify-content(center);
       margin: 0 auto;
       &-avatar {
-        height: @size-base * 11;
-        margin: @size-base auto;
+        height: 88px;
+        margin: 0 auto;
         &-img {
-          height: @size-base * 11;
-          width: @size-base * 11;
-          border: 2px solid @border-color-white;
+          height: 88px;
+          width: 88px;
+          border: 2px solid #fff;
         }
       }
+
       &-input {
-        font-size : @font-size-body;
-        background-color: fade(@bg-color-white, 90);
-        padding : 0 @size-base * 0.25 0 @size-base * 1.375;
-        .border-radius(@border-radius-base);
-        .background-clip(padding-box);
-        margin-bottom : @size-base;
-        .display(flex);
-        line-height : @size-base * 4;
+        margin-top: 4px;
       }
+
       &-login .mobile-vue-button {
+        margin-top: 4px;
         .opacity(0.8);
       }
     }

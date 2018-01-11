@@ -14,7 +14,7 @@ module.exports = app => {
           id: client.clientId,
           grants: client.grants,
           redirectUris: client.redirectUris,
-          username: client.username
+          username: client.username,
         };
       }
       return null;
@@ -24,7 +24,7 @@ module.exports = app => {
       if (client.username) {
         const user = await this.service.user.getByName(client.username);
         if (user) {
-          return {id: user._id};
+          return { id: user._id };
         }
       }
       return null;
@@ -33,7 +33,7 @@ module.exports = app => {
     async getUser(username, password) {
       const user = await this.service.user.getByName(username);
       if (user && await this.ctx.compare(password, user.password)) {
-        return {id: user._id};
+        return { id: user._id };
       }
       return null;
     }
@@ -53,7 +53,7 @@ module.exports = app => {
         expiresAt: token.accessTokenExpiresAt,
         scope: token.scope,
         clientId: client.id,
-        userId: user.id
+        userId: user.id,
       };
       await app.redis.hmset('accessToken:' + accessToken.accessToken, accessToken);
       const accessTokenExpire = parseInt((token.accessTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
@@ -65,7 +65,7 @@ module.exports = app => {
           expiresAt: token.refreshTokenExpiresAt,
           scope: token.scope,
           clientId: client.id,
-          userId: user.id
+          userId: user.id,
         };
         await app.redis.hmset('refreshToken:' + refreshToken.refreshToken, refreshToken);
         const refreshTokenExpire = parseInt((token.refreshTokenExpiresAt.getTime() - new Date().getTime()) / 1000);
@@ -80,8 +80,8 @@ module.exports = app => {
           refreshToken: refreshToken.refreshToken,
           refreshTokenExpiresAt: refreshToken.expiresAt,
           scope: accessToken.scope,
-          client: {id: accessToken.clientId},
-          user: {id: accessToken.userId}
+          client: { id: accessToken.clientId },
+          user: { id: accessToken.userId },
         };
       }
 
@@ -89,8 +89,8 @@ module.exports = app => {
         accessToken: accessToken.accessToken,
         accessTokenExpiresAt: accessToken.expiresAt,
         scope: accessToken.scope,
-        client: {id: accessToken.clientId},
-        user: {id: accessToken.userId}
+        client: { id: accessToken.clientId },
+        user: { id: accessToken.userId },
       };
     }
 
@@ -110,8 +110,8 @@ module.exports = app => {
           accessToken: accessToken.refreshToken,
           accessTokenExpiresAt: accessToken.expiresAt,
           scope: accessToken.scope,
-          client: {id: client.clientId},
-          user: {id: user._id}
+          client: { id: client.clientId },
+          user: { id: user._id },
         };
       }
     }
@@ -132,8 +132,8 @@ module.exports = app => {
           refreshToken: refreshToken.refreshToken,
           refreshTokenExpiresAt: refreshToken.expiresAt,
           scope: refreshToken.scope,
-          client: {id: client.clientId},
-          user: {id: user._id}
+          client: { id: client.clientId },
+          user: { id: user._id },
         };
       }
     }

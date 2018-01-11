@@ -7,22 +7,22 @@ module.exports = app => {
     name: {
       type: String,
       unique: true,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
+      ref: 'User',
+    },
   }, {
-    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
+    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' },
   });
-  return mongoose.model('Resource', ResourceSchema)
+  return mongoose.model('Resource', ResourceSchema);
 };

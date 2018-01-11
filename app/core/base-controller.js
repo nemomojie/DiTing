@@ -10,12 +10,6 @@ class BaseController extends Controller {
     this.res = ctx.res;
   }
 
-  check(param, msg) {
-    if (!param) {
-      this.badRequest(msg);
-    }
-  }
-
   resolveRespond(data, isNew) {
     if (!data) {
       this.notFound('Not found exist resource');

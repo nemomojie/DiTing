@@ -21,5 +21,12 @@ module.exports = appInfo => {
     ignoreDirs: [ '../app/view' ],
   };
 
+  // disable csrf to test on post man
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+
   return config;
 };

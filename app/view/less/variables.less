@@ -1,16 +1,1057 @@
-@size-base: 8px;
-@border-radius-base: 3px;
+//
+// Variables
+// TODO: make color variables themable
+// --------------------------------------------------
 
-// font size
-@font-size-body: 1.4rem;
 
-@brand-color-black: #000;
-@brand-color-white: #fff;
+// Global values
+// --------------------------------------------------
 
-@text-normal: #333;
+// Brand colors
+// brand-xx variables are only for studio-x member.
+// -------------------------
 
-@body-bg: #fff;
+@brand-primary:         #4285f4;
+@brand-success:         #00b19d;
+@brand-success-soft:    #aae5de;
+@brand-warning:         #f4b142;
+@brand-warning-soft:    #fadeaf;
+@brand-danger:          #e91e63;
+@brand-danger-soft:     #f9c4d6;
+@brand-info:            #4285f4;
+@brand-info-soft:       #c6dafb;
 
-@bg-color-white: @brand-color-white;
+@brand-dark:            #303641;
+@brand-gray:            @brand-gray-color-10;
 
-@border-color-white: @brand-color-white;
+@brand-focus:   @brand-primary;
+
+@brand-color-black:     #000;
+@brand-color-white:     #fff;
+
+// Grays
+// -------------------------
+
+@brand-gray-color-120:     #0a1928;
+@brand-gray-color-110:     #263340;
+@brand-gray-color-100:     #4a5560;
+@brand-gray-color-90:      #777f86;
+@brand-gray-color-80:      #9299a0;
+@brand-gray-color-70:      #a4aab0;
+@brand-gray-color-60:      #b8bdc2;
+@brand-gray-color-50:      #cdd0d3;
+@brand-gray-color-40:      #dadde0;
+@brand-gray-color-30:      #e6e8ea;
+@brand-gray-color-20:      #f0f1f2;
+@brand-gray-color-10:      #f4f5f6;
+
+@brand-neutral-color-120:     #191919;
+@brand-neutral-color-110:     #333;
+@brand-neutral-color-100:     #555;
+@brand-neutral-color-90:      #7f7f7f;
+@brand-neutral-color-80:      #999;
+@brand-neutral-color-70:      #aaa;
+@brand-neutral-color-60:      #bdbdbd;
+@brand-neutral-color-50:      #d0d0d0;
+@brand-neutral-color-40:      #ddd;
+@brand-neutral-color-30:      #e8e8e8;
+@brand-neutral-color-20:      #f1f1f1;
+@brand-neutral-color-10:      #f5f5f5;
+
+// Material
+// -------------------------
+@brand-material-accent-indigo:     @brand-goog-material-color-indigo-500;
+@brand-material-accent-green:      @brand-goog-material-color-green-500;
+@brand-material-accent-red:        @brand-goog-material-color-red-500;
+@brand-material-accent-orange:     #ff631c;
+@brand-material-accent-light-blue: @brand-goog-material-color-light-blue-500;
+
+@brand-material-indigo:            #5c6bc0;
+@brand-material-green:             #66bb6a;
+@brand-material-red:               #ef5350;
+@brand-material-orange:            #ff7f3b;
+@brand-material-light-blue:        #29b6f6;
+
+//Google material design colors
+//--------------------------
+//
+@brand-goog-material-color-red-list:         #ffebee, #ffcdd2, #ef9a9a, #e57373, #ef5350, #f44336, #e53935, #d32f2f, #c62828, #b71c1c, #ff8a80, #ff5252, #ff1744, #d50000;
+@brand-goog-material-color-pink-list:        #fce4ec, #f8bbd0, #f48fb1, #f06292, #ec407a, #e91e63, #d81b60, #c2185b, #ad1457, #880e4f, #ff80ab, #ff4081, #f50057, #c51162;
+@brand-goog-material-color-purple-list:      #f3e5f5, #e1bee7, #ce93d8, #ba68c8, #ab47bc, #9c27b0, #8e24aa, #7b1fa2, #6a1b9a, #4a148c, #ea80fc, #e040fb, #d500f9, #aa00ff;
+@brand-goog-material-color-deep-purple-list: #ede7f6, #d1c4e9, #b39ddb, #9575cd, #7e57c2, #673ab7, #5e35b1, #512da8, #4527a0, #311b92, #b388ff, #7c4dff, #651fff, #6200ea;
+@brand-goog-material-color-indigo-list:      #e8eaf6, #c5cae9, #9fa8da, #7986cb, #5c6bc0, #3f51b5, #3949ab, #303f9f, #283593, #1a237e, #8c9eff, #536dfe, #3d5afe, #304ffe;
+@brand-goog-material-color-blue-list:        #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3, #1e88e5, #1976d2, #1565c0, #0d47a1, #82b1ff, #448aff, #2979ff, #2962ff;
+@brand-goog-material-color-light-blue-list:  #e1f5fe, #b3e5fc, #81d4fa, #4fc3f7, #29b6f6, #03a9f4, #039be5, #0288d1, #0277bd, #01579b, #80d8ff, #40c4ff, #00b0ff, #0091ea;
+@brand-goog-material-color-cyan-list:        #e0f7fa, #b2ebf2, #80deea, #4dd0e1, #26c6da, #00bcd4, #00acc1, #0097a7, #00838f, #006064, #84ffff, #18ffff, #00e5ff, #00b8d4;
+@brand-goog-material-color-teal-list:        #e0f2f1, #b2dfdb, #80cbc4, #4db6ac, #26a69a, #009688, #00897b, #00796b, #00695c, #004d40, #a7ffeb, #64ffda, #1de9b6, #00bfa5;
+@brand-goog-material-color-green-list:       #e8f5e9, #c8e6c9, #a5d6a7, #81c784, #66bb6a, #4caf50, #43a047, #388e3c, #2e7d32, #1b5e20, #b9f6ca, #69f0ae, #00e676, #00c853;
+@brand-goog-material-color-light-green-list: #f1f8e9, #dcedc8, #c5e1a5, #aed581, #9ccc65, #8bc34a, #7cb342, #689f38, #558b2f, #33691e, #ccff90, #b2ff59, #76ff03, #64dd17;
+@brand-goog-material-color-lime-list:        #f9fbe7, #f0f4c3, #e6ee9c, #dce775, #d4e157, #cddc39, #c0ca33, #afb42b, #9e9d24, #827717, #f4ff81, #eeff41, #c6ff00, #aeea00;
+@brand-goog-material-color-yellow-list:      #fffde7, #fff9c4, #fff59d, #fff176, #ffee58, #ffeb3b, #fdd835, #fbc02d, #f9a825, #f57f17, #ffff8d, #ffff00, #ffea00, #ffd600;
+@brand-goog-material-color-amber-list:       #fff8e1, #ffecb3, #ffe082, #ffd54f, #ffca28, #ffc107, #ffb300, #ffa000, #ff8f00, #ff6f00, #ffe57f, #ffd740, #ffc400, #ffab00;
+@brand-goog-material-color-orange-list:      #fff3e0, #ffe0b2, #ffcc80, #ffb74d, #ffa726, #ff9800, #fb8c00, #f57c00, #ef6c00, #e65100, #ffd180, #ffab40, #ff9100, #ff6d00;
+@brand-goog-material-color-deep-orange-list: #fbe9e7, #ffccbc, #ffab91, #ff8a65, #ff7043, #ff5722, #f4511e, #e64a19, #d84315, #bf360c, #ff9e80, #ff6e40, #ff3d00, #dd2c00;
+@brand-goog-material-color-brown-list:       #efebe9, #d7ccc8, #bcaaa4, #a1887f, #8d6e63, #795548, #6d4c41, #5d4037, #4e342e, #3e2723;
+@brand-goog-material-color-grey-list:        #fafafa, #f5f5f5, #eeeeee, #e0e0e0, #bdbdbd, #9e9e9e, #757575, #616161, #424242, #212121;
+@brand-goog-material-color-blue-grey-list:   #eceff1, #cfd8dc, #b0bec5, #90a4ae, #78909c, #607d8b, #546e7a, #455a64, #37474f, #263238;
+@brand-goog-material-color-red:              extract(@brand-goog-material-color-red-list, 6);
+@brand-goog-material-color-red-50:           extract(@brand-goog-material-color-red-list, 1);
+@brand-goog-material-color-red-100:          extract(@brand-goog-material-color-red-list, 2);
+@brand-goog-material-color-red-200:          extract(@brand-goog-material-color-red-list, 3);
+@brand-goog-material-color-red-300:          extract(@brand-goog-material-color-red-list, 4);
+@brand-goog-material-color-red-400:          extract(@brand-goog-material-color-red-list, 5);
+@brand-goog-material-color-red-500:          extract(@brand-goog-material-color-red-list, 6);
+@brand-goog-material-color-red-600:          extract(@brand-goog-material-color-red-list, 7);
+@brand-goog-material-color-red-700:          extract(@brand-goog-material-color-red-list, 8);
+@brand-goog-material-color-red-800:          extract(@brand-goog-material-color-red-list, 9);
+@brand-goog-material-color-red-900:          extract(@brand-goog-material-color-red-list, 10);
+@brand-goog-material-color-red-A100:         extract(@brand-goog-material-color-red-list, 11);
+@brand-goog-material-color-red-A200:         extract(@brand-goog-material-color-red-list, 12);
+@brand-goog-material-color-red-A400:         extract(@brand-goog-material-color-red-list, 13);
+@brand-goog-material-color-red-A700:         extract(@brand-goog-material-color-red-list, 14);
+@brand-goog-material-color-pink:             extract(@brand-goog-material-color-pink-list, 6);
+@brand-goog-material-color-pink-50:          extract(@brand-goog-material-color-pink-list, 1);
+@brand-goog-material-color-pink-100:         extract(@brand-goog-material-color-pink-list, 2);
+@brand-goog-material-color-pink-200:         extract(@brand-goog-material-color-pink-list, 3);
+@brand-goog-material-color-pink-300:         extract(@brand-goog-material-color-pink-list, 4);
+@brand-goog-material-color-pink-400:         extract(@brand-goog-material-color-pink-list, 5);
+@brand-goog-material-color-pink-500:         extract(@brand-goog-material-color-pink-list, 6);
+@brand-goog-material-color-pink-600:         extract(@brand-goog-material-color-pink-list, 7);
+@brand-goog-material-color-pink-700:         extract(@brand-goog-material-color-pink-list, 8);
+@brand-goog-material-color-pink-800:         extract(@brand-goog-material-color-pink-list, 9);
+@brand-goog-material-color-pink-900:         extract(@brand-goog-material-color-pink-list, 10);
+@brand-goog-material-color-pink-A100:        extract(@brand-goog-material-color-pink-list, 11);
+@brand-goog-material-color-pink-A200:        extract(@brand-goog-material-color-pink-list, 12);
+@brand-goog-material-color-pink-A400:        extract(@brand-goog-material-color-pink-list, 13);
+@brand-goog-material-color-pink-A700:        extract(@brand-goog-material-color-pink-list, 14);
+@brand-goog-material-color-purple:           extract(@brand-goog-material-color-purple-list, 6);
+@brand-goog-material-color-purple-50:        extract(@brand-goog-material-color-purple-list, 1);
+@brand-goog-material-color-purple-100:       extract(@brand-goog-material-color-purple-list, 2);
+@brand-goog-material-color-purple-200:       extract(@brand-goog-material-color-purple-list, 3);
+@brand-goog-material-color-purple-300:       extract(@brand-goog-material-color-purple-list, 4);
+@brand-goog-material-color-purple-400:       extract(@brand-goog-material-color-purple-list, 5);
+@brand-goog-material-color-purple-500:       extract(@brand-goog-material-color-purple-list, 6);
+@brand-goog-material-color-purple-600:       extract(@brand-goog-material-color-purple-list, 7);
+@brand-goog-material-color-purple-700:       extract(@brand-goog-material-color-purple-list, 8);
+@brand-goog-material-color-purple-800:       extract(@brand-goog-material-color-purple-list, 9);
+@brand-goog-material-color-purple-900:       extract(@brand-goog-material-color-purple-list, 10);
+@brand-goog-material-color-purple-A100:      extract(@brand-goog-material-color-purple-list, 11);
+@brand-goog-material-color-purple-A200:      extract(@brand-goog-material-color-purple-list, 12);
+@brand-goog-material-color-purple-A400:      extract(@brand-goog-material-color-purple-list, 13);
+@brand-goog-material-color-purple-A700:      extract(@brand-goog-material-color-purple-list, 14);
+@brand-goog-material-color-deep-purple:      extract(@brand-goog-material-color-deep-purple-list, 6);
+@brand-goog-material-color-deep-purple-50:   extract(@brand-goog-material-color-deep-purple-list, 1);
+@brand-goog-material-color-deep-purple-100:  extract(@brand-goog-material-color-deep-purple-list, 2);
+@brand-goog-material-color-deep-purple-200:  extract(@brand-goog-material-color-deep-purple-list, 3);
+@brand-goog-material-color-deep-purple-300:  extract(@brand-goog-material-color-deep-purple-list, 4);
+@brand-goog-material-color-deep-purple-400:  extract(@brand-goog-material-color-deep-purple-list, 5);
+@brand-goog-material-color-deep-purple-500:  extract(@brand-goog-material-color-deep-purple-list, 6);
+@brand-goog-material-color-deep-purple-600:  extract(@brand-goog-material-color-deep-purple-list, 7);
+@brand-goog-material-color-deep-purple-700:  extract(@brand-goog-material-color-deep-purple-list, 8);
+@brand-goog-material-color-deep-purple-800:  extract(@brand-goog-material-color-deep-purple-list, 9);
+@brand-goog-material-color-deep-purple-900:  extract(@brand-goog-material-color-deep-purple-list, 10);
+@brand-goog-material-color-deep-purple-A100: extract(@brand-goog-material-color-deep-purple-list, 11);
+@brand-goog-material-color-deep-purple-A200: extract(@brand-goog-material-color-deep-purple-list, 12);
+@brand-goog-material-color-deep-purple-A400: extract(@brand-goog-material-color-deep-purple-list, 13);
+@brand-goog-material-color-deep-purple-A700: extract(@brand-goog-material-color-deep-purple-list, 14);
+@brand-goog-material-color-indigo:           extract(@brand-goog-material-color-indigo-list, 6);
+@brand-goog-material-color-indigo-50:        extract(@brand-goog-material-color-indigo-list, 1);
+@brand-goog-material-color-indigo-100:       extract(@brand-goog-material-color-indigo-list, 2);
+@brand-goog-material-color-indigo-200:       extract(@brand-goog-material-color-indigo-list, 3);
+@brand-goog-material-color-indigo-300:       extract(@brand-goog-material-color-indigo-list, 4);
+@brand-goog-material-color-indigo-400:       extract(@brand-goog-material-color-indigo-list, 5);
+@brand-goog-material-color-indigo-500:       extract(@brand-goog-material-color-indigo-list, 6);
+@brand-goog-material-color-indigo-600:       extract(@brand-goog-material-color-indigo-list, 7);
+@brand-goog-material-color-indigo-700:       extract(@brand-goog-material-color-indigo-list, 8);
+@brand-goog-material-color-indigo-800:       extract(@brand-goog-material-color-indigo-list, 9);
+@brand-goog-material-color-indigo-900:       extract(@brand-goog-material-color-indigo-list, 10);
+@brand-goog-material-color-indigo-A100:      extract(@brand-goog-material-color-indigo-list, 11);
+@brand-goog-material-color-indigo-A200:      extract(@brand-goog-material-color-indigo-list, 12);
+@brand-goog-material-color-indigo-A400:      extract(@brand-goog-material-color-indigo-list, 13);
+@brand-goog-material-color-indigo-A700:      extract(@brand-goog-material-color-indigo-list, 14);
+@brand-goog-material-color-blue:             extract(@brand-goog-material-color-blue-list, 6);
+@brand-goog-material-color-blue-50:          extract(@brand-goog-material-color-blue-list, 1);
+@brand-goog-material-color-blue-100:         extract(@brand-goog-material-color-blue-list, 2);
+@brand-goog-material-color-blue-200:         extract(@brand-goog-material-color-blue-list, 3);
+@brand-goog-material-color-blue-300:         extract(@brand-goog-material-color-blue-list, 4);
+@brand-goog-material-color-blue-400:         extract(@brand-goog-material-color-blue-list, 5);
+@brand-goog-material-color-blue-500:         extract(@brand-goog-material-color-blue-list, 6);
+@brand-goog-material-color-blue-600:         extract(@brand-goog-material-color-blue-list, 7);
+@brand-goog-material-color-blue-700:         extract(@brand-goog-material-color-blue-list, 8);
+@brand-goog-material-color-blue-800:         extract(@brand-goog-material-color-blue-list, 9);
+@brand-goog-material-color-blue-900:         extract(@brand-goog-material-color-blue-list, 10);
+@brand-goog-material-color-blue-A100:        extract(@brand-goog-material-color-blue-list, 11);
+@brand-goog-material-color-blue-A200:        extract(@brand-goog-material-color-blue-list, 12);
+@brand-goog-material-color-blue-A400:        extract(@brand-goog-material-color-blue-list, 13);
+@brand-goog-material-color-blue-A700:        extract(@brand-goog-material-color-blue-list, 14);
+@brand-goog-material-color-light-blue:       extract(@brand-goog-material-color-light-blue-list, 6);
+@brand-goog-material-color-light-blue-50:    extract(@brand-goog-material-color-light-blue-list, 1);
+@brand-goog-material-color-light-blue-100:   extract(@brand-goog-material-color-light-blue-list, 2);
+@brand-goog-material-color-light-blue-200:   extract(@brand-goog-material-color-light-blue-list, 3);
+@brand-goog-material-color-light-blue-300:   extract(@brand-goog-material-color-light-blue-list, 4);
+@brand-goog-material-color-light-blue-400:   extract(@brand-goog-material-color-light-blue-list, 5);
+@brand-goog-material-color-light-blue-500:   extract(@brand-goog-material-color-light-blue-list, 6);
+@brand-goog-material-color-light-blue-600:   extract(@brand-goog-material-color-light-blue-list, 7);
+@brand-goog-material-color-light-blue-700:   extract(@brand-goog-material-color-light-blue-list, 8);
+@brand-goog-material-color-light-blue-800:   extract(@brand-goog-material-color-light-blue-list, 9);
+@brand-goog-material-color-light-blue-900:   extract(@brand-goog-material-color-light-blue-list, 10);
+@brand-goog-material-color-light-blue-A100:  extract(@brand-goog-material-color-light-blue-list, 11);
+@brand-goog-material-color-light-blue-A200:  extract(@brand-goog-material-color-light-blue-list, 12);
+@brand-goog-material-color-light-blue-A400:  extract(@brand-goog-material-color-light-blue-list, 13);
+@brand-goog-material-color-light-blue-A700:  extract(@brand-goog-material-color-light-blue-list, 14);
+@brand-goog-material-color-cyan:             extract(@brand-goog-material-color-cyan-list, 6);
+@brand-goog-material-color-cyan-50:          extract(@brand-goog-material-color-cyan-list, 1);
+@brand-goog-material-color-cyan-100:         extract(@brand-goog-material-color-cyan-list, 2);
+@brand-goog-material-color-cyan-200:         extract(@brand-goog-material-color-cyan-list, 3);
+@brand-goog-material-color-cyan-300:         extract(@brand-goog-material-color-cyan-list, 4);
+@brand-goog-material-color-cyan-400:         extract(@brand-goog-material-color-cyan-list, 5);
+@brand-goog-material-color-cyan-500:         extract(@brand-goog-material-color-cyan-list, 6);
+@brand-goog-material-color-cyan-600:         extract(@brand-goog-material-color-cyan-list, 7);
+@brand-goog-material-color-cyan-700:         extract(@brand-goog-material-color-cyan-list, 8);
+@brand-goog-material-color-cyan-800:         extract(@brand-goog-material-color-cyan-list, 9);
+@brand-goog-material-color-cyan-900:         extract(@brand-goog-material-color-cyan-list, 10);
+@brand-goog-material-color-cyan-A100:        extract(@brand-goog-material-color-cyan-list, 11);
+@brand-goog-material-color-cyan-A200:        extract(@brand-goog-material-color-cyan-list, 12);
+@brand-goog-material-color-cyan-A400:        extract(@brand-goog-material-color-cyan-list, 13);
+@brand-goog-material-color-cyan-A700:        extract(@brand-goog-material-color-cyan-list, 14);
+@brand-goog-material-color-teal:             extract(@brand-goog-material-color-teal-list, 6);
+@brand-goog-material-color-teal-50:          extract(@brand-goog-material-color-teal-list, 1);
+@brand-goog-material-color-teal-100:         extract(@brand-goog-material-color-teal-list, 2);
+@brand-goog-material-color-teal-200:         extract(@brand-goog-material-color-teal-list, 3);
+@brand-goog-material-color-teal-300:         extract(@brand-goog-material-color-teal-list, 4);
+@brand-goog-material-color-teal-400:         extract(@brand-goog-material-color-teal-list, 5);
+@brand-goog-material-color-teal-500:         extract(@brand-goog-material-color-teal-list, 6);
+@brand-goog-material-color-teal-600:         extract(@brand-goog-material-color-teal-list, 7);
+@brand-goog-material-color-teal-700:         extract(@brand-goog-material-color-teal-list, 8);
+@brand-goog-material-color-teal-800:         extract(@brand-goog-material-color-teal-list, 9);
+@brand-goog-material-color-teal-900:         extract(@brand-goog-material-color-teal-list, 10);
+@brand-goog-material-color-teal-A100:        extract(@brand-goog-material-color-teal-list, 11);
+@brand-goog-material-color-teal-A200:        extract(@brand-goog-material-color-teal-list, 12);
+@brand-goog-material-color-teal-A400:        extract(@brand-goog-material-color-teal-list, 13);
+@brand-goog-material-color-teal-A700:        extract(@brand-goog-material-color-teal-list, 14);
+@brand-goog-material-color-green:            extract(@brand-goog-material-color-green-list, 6);
+@brand-goog-material-color-green-50:         extract(@brand-goog-material-color-green-list, 1);
+@brand-goog-material-color-green-100:        extract(@brand-goog-material-color-green-list, 2);
+@brand-goog-material-color-green-200:        extract(@brand-goog-material-color-green-list, 3);
+@brand-goog-material-color-green-300:        extract(@brand-goog-material-color-green-list, 4);
+@brand-goog-material-color-green-400:        extract(@brand-goog-material-color-green-list, 5);
+@brand-goog-material-color-green-500:        extract(@brand-goog-material-color-green-list, 6);
+@brand-goog-material-color-green-600:        extract(@brand-goog-material-color-green-list, 7);
+@brand-goog-material-color-green-700:        extract(@brand-goog-material-color-green-list, 8);
+@brand-goog-material-color-green-800:        extract(@brand-goog-material-color-green-list, 9);
+@brand-goog-material-color-green-900:        extract(@brand-goog-material-color-green-list, 10);
+@brand-goog-material-color-green-A100:       extract(@brand-goog-material-color-green-list, 11);
+@brand-goog-material-color-green-A200:       extract(@brand-goog-material-color-green-list, 12);
+@brand-goog-material-color-green-A400:       extract(@brand-goog-material-color-green-list, 13);
+@brand-goog-material-color-green-A700:       extract(@brand-goog-material-color-green-list, 14);
+@brand-goog-material-color-light-green:      extract(@brand-goog-material-color-light-green-list, 6);
+@brand-goog-material-color-light-green-50:   extract(@brand-goog-material-color-light-green-list, 1);
+@brand-goog-material-color-light-green-100:  extract(@brand-goog-material-color-light-green-list, 2);
+@brand-goog-material-color-light-green-200:  extract(@brand-goog-material-color-light-green-list, 3);
+@brand-goog-material-color-light-green-300:  extract(@brand-goog-material-color-light-green-list, 4);
+@brand-goog-material-color-light-green-400:  extract(@brand-goog-material-color-light-green-list, 5);
+@brand-goog-material-color-light-green-500:  extract(@brand-goog-material-color-light-green-list, 6);
+@brand-goog-material-color-light-green-600:  extract(@brand-goog-material-color-light-green-list, 7);
+@brand-goog-material-color-light-green-700:  extract(@brand-goog-material-color-light-green-list, 8);
+@brand-goog-material-color-light-green-800:  extract(@brand-goog-material-color-light-green-list, 9);
+@brand-goog-material-color-light-green-900:  extract(@brand-goog-material-color-light-green-list, 10);
+@brand-goog-material-color-light-green-A100: extract(@brand-goog-material-color-light-green-list, 11);
+@brand-goog-material-color-light-green-A200: extract(@brand-goog-material-color-light-green-list, 12);
+@brand-goog-material-color-light-green-A400: extract(@brand-goog-material-color-light-green-list, 13);
+@brand-goog-material-color-light-green-A700: extract(@brand-goog-material-color-light-green-list, 14);
+@brand-goog-material-color-lime:             extract(@brand-goog-material-color-lime-list, 6);
+@brand-goog-material-color-lime-50:          extract(@brand-goog-material-color-lime-list, 1);
+@brand-goog-material-color-lime-100:         extract(@brand-goog-material-color-lime-list, 2);
+@brand-goog-material-color-lime-200:         extract(@brand-goog-material-color-lime-list, 3);
+@brand-goog-material-color-lime-300:         extract(@brand-goog-material-color-lime-list, 4);
+@brand-goog-material-color-lime-400:         extract(@brand-goog-material-color-lime-list, 5);
+@brand-goog-material-color-lime-500:         extract(@brand-goog-material-color-lime-list, 6);
+@brand-goog-material-color-lime-600:         extract(@brand-goog-material-color-lime-list, 7);
+@brand-goog-material-color-lime-700:         extract(@brand-goog-material-color-lime-list, 8);
+@brand-goog-material-color-lime-800:         extract(@brand-goog-material-color-lime-list, 9);
+@brand-goog-material-color-lime-900:         extract(@brand-goog-material-color-lime-list, 10);
+@brand-goog-material-color-lime-A100:        extract(@brand-goog-material-color-lime-list, 11);
+@brand-goog-material-color-lime-A200:        extract(@brand-goog-material-color-lime-list, 12);
+@brand-goog-material-color-lime-A400:        extract(@brand-goog-material-color-lime-list, 13);
+@brand-goog-material-color-lime-A700:        extract(@brand-goog-material-color-lime-list, 14);
+@brand-goog-material-color-yellow:           extract(@brand-goog-material-color-yellow-list, 6);
+@brand-goog-material-color-yellow-50:        extract(@brand-goog-material-color-yellow-list, 1);
+@brand-goog-material-color-yellow-100:       extract(@brand-goog-material-color-yellow-list, 2);
+@brand-goog-material-color-yellow-200:       extract(@brand-goog-material-color-yellow-list, 3);
+@brand-goog-material-color-yellow-300:       extract(@brand-goog-material-color-yellow-list, 4);
+@brand-goog-material-color-yellow-400:       extract(@brand-goog-material-color-yellow-list, 5);
+@brand-goog-material-color-yellow-500:       extract(@brand-goog-material-color-yellow-list, 6);
+@brand-goog-material-color-yellow-600:       extract(@brand-goog-material-color-yellow-list, 7);
+@brand-goog-material-color-yellow-700:       extract(@brand-goog-material-color-yellow-list, 8);
+@brand-goog-material-color-yellow-800:       extract(@brand-goog-material-color-yellow-list, 9);
+@brand-goog-material-color-yellow-900:       extract(@brand-goog-material-color-yellow-list, 10);
+@brand-goog-material-color-yellow-A100:      extract(@brand-goog-material-color-yellow-list, 11);
+@brand-goog-material-color-yellow-A200:      extract(@brand-goog-material-color-yellow-list, 12);
+@brand-goog-material-color-yellow-A400:      extract(@brand-goog-material-color-yellow-list, 13);
+@brand-goog-material-color-yellow-A700:      extract(@brand-goog-material-color-yellow-list, 14);
+@brand-goog-material-color-amber:            extract(@brand-goog-material-color-amber-list, 6);
+@brand-goog-material-color-amber-50:         extract(@brand-goog-material-color-amber-list, 1);
+@brand-goog-material-color-amber-100:        extract(@brand-goog-material-color-amber-list, 2);
+@brand-goog-material-color-amber-200:        extract(@brand-goog-material-color-amber-list, 3);
+@brand-goog-material-color-amber-300:        extract(@brand-goog-material-color-amber-list, 4);
+@brand-goog-material-color-amber-400:        extract(@brand-goog-material-color-amber-list, 5);
+@brand-goog-material-color-amber-500:        extract(@brand-goog-material-color-amber-list, 6);
+@brand-goog-material-color-amber-600:        extract(@brand-goog-material-color-amber-list, 7);
+@brand-goog-material-color-amber-700:        extract(@brand-goog-material-color-amber-list, 8);
+@brand-goog-material-color-amber-800:        extract(@brand-goog-material-color-amber-list, 9);
+@brand-goog-material-color-amber-900:        extract(@brand-goog-material-color-amber-list, 10);
+@brand-goog-material-color-amber-A100:       extract(@brand-goog-material-color-amber-list, 11);
+@brand-goog-material-color-amber-A200:       extract(@brand-goog-material-color-amber-list, 12);
+@brand-goog-material-color-amber-A400:       extract(@brand-goog-material-color-amber-list, 13);
+@brand-goog-material-color-amber-A700:       extract(@brand-goog-material-color-amber-list, 14);
+@brand-goog-material-color-orange:           extract(@brand-goog-material-color-orange-list, 6);
+@brand-goog-material-color-orange-50:        extract(@brand-goog-material-color-orange-list, 1);
+@brand-goog-material-color-orange-100:       extract(@brand-goog-material-color-orange-list, 2);
+@brand-goog-material-color-orange-200:       extract(@brand-goog-material-color-orange-list, 3);
+@brand-goog-material-color-orange-300:       extract(@brand-goog-material-color-orange-list, 4);
+@brand-goog-material-color-orange-400:       extract(@brand-goog-material-color-orange-list, 5);
+@brand-goog-material-color-orange-500:       extract(@brand-goog-material-color-orange-list, 6);
+@brand-goog-material-color-orange-600:       extract(@brand-goog-material-color-orange-list, 7);
+@brand-goog-material-color-orange-700:       extract(@brand-goog-material-color-orange-list, 8);
+@brand-goog-material-color-orange-800:       extract(@brand-goog-material-color-orange-list, 9);
+@brand-goog-material-color-orange-900:       extract(@brand-goog-material-color-orange-list, 10);
+@brand-goog-material-color-orange-A100:      extract(@brand-goog-material-color-orange-list, 11);
+@brand-goog-material-color-orange-A200:      extract(@brand-goog-material-color-orange-list, 12);
+@brand-goog-material-color-orange-A400:      extract(@brand-goog-material-color-orange-list, 13);
+@brand-goog-material-color-orange-A700:      extract(@brand-goog-material-color-orange-list, 14);
+@brand-goog-material-color-deep-orange:      extract(@brand-goog-material-color-deep-orange-list, 6);
+@brand-goog-material-color-deep-orange-50:   extract(@brand-goog-material-color-deep-orange-list, 1);
+@brand-goog-material-color-deep-orange-100:  extract(@brand-goog-material-color-deep-orange-list, 2);
+@brand-goog-material-color-deep-orange-200:  extract(@brand-goog-material-color-deep-orange-list, 3);
+@brand-goog-material-color-deep-orange-300:  extract(@brand-goog-material-color-deep-orange-list, 4);
+@brand-goog-material-color-deep-orange-400:  extract(@brand-goog-material-color-deep-orange-list, 5);
+@brand-goog-material-color-deep-orange-500:  extract(@brand-goog-material-color-deep-orange-list, 6);
+@brand-goog-material-color-deep-orange-600:  extract(@brand-goog-material-color-deep-orange-list, 7);
+@brand-goog-material-color-deep-orange-700:  extract(@brand-goog-material-color-deep-orange-list, 8);
+@brand-goog-material-color-deep-orange-800:  extract(@brand-goog-material-color-deep-orange-list, 9);
+@brand-goog-material-color-deep-orange-900:  extract(@brand-goog-material-color-deep-orange-list, 10);
+@brand-goog-material-color-deep-orange-A100: extract(@brand-goog-material-color-deep-orange-list, 11);
+@brand-goog-material-color-deep-orange-A200: extract(@brand-goog-material-color-deep-orange-list, 12);
+@brand-goog-material-color-deep-orange-A400: extract(@brand-goog-material-color-deep-orange-list, 13);
+@brand-goog-material-color-deep-orange-A700: extract(@brand-goog-material-color-deep-orange-list, 14);
+@brand-goog-material-color-brown:            extract(@brand-goog-material-color-brown-list, 6);
+@brand-goog-material-color-brown-50:         extract(@brand-goog-material-color-brown-list, 1);
+@brand-goog-material-color-brown-100:        extract(@brand-goog-material-color-brown-list, 2);
+@brand-goog-material-color-brown-200:        extract(@brand-goog-material-color-brown-list, 3);
+@brand-goog-material-color-brown-300:        extract(@brand-goog-material-color-brown-list, 4);
+@brand-goog-material-color-brown-400:        extract(@brand-goog-material-color-brown-list, 5);
+@brand-goog-material-color-brown-500:        extract(@brand-goog-material-color-brown-list, 6);
+@brand-goog-material-color-brown-600:        extract(@brand-goog-material-color-brown-list, 7);
+@brand-goog-material-color-brown-700:        extract(@brand-goog-material-color-brown-list, 8);
+@brand-goog-material-color-brown-800:        extract(@brand-goog-material-color-brown-list, 9);
+@brand-goog-material-color-brown-900:        extract(@brand-goog-material-color-brown-list, 10);
+@brand-goog-material-color-grey:             extract(@brand-goog-material-color-grey-list, 6);
+@brand-goog-material-color-grey-50:          extract(@brand-goog-material-color-grey-list, 1);
+@brand-goog-material-color-grey-100:         extract(@brand-goog-material-color-grey-list, 2);
+@brand-goog-material-color-grey-200:         extract(@brand-goog-material-color-grey-list, 3);
+@brand-goog-material-color-grey-300:         extract(@brand-goog-material-color-grey-list, 4);
+@brand-goog-material-color-grey-400:         extract(@brand-goog-material-color-grey-list, 5);
+@brand-goog-material-color-grey-500:         extract(@brand-goog-material-color-grey-list, 6);
+@brand-goog-material-color-grey-600:         extract(@brand-goog-material-color-grey-list, 7);
+@brand-goog-material-color-grey-700:         extract(@brand-goog-material-color-grey-list, 8);
+@brand-goog-material-color-grey-800:         extract(@brand-goog-material-color-grey-list, 9);
+@brand-goog-material-color-grey-900:         extract(@brand-goog-material-color-grey-list, 10);
+@brand-goog-material-color-blue-grey:        extract(@brand-goog-material-color-blue-grey-list, 6);
+@brand-goog-material-color-blue-grey-50:     extract(@brand-goog-material-color-blue-grey-list, 1);
+@brand-goog-material-color-blue-grey-100:    extract(@brand-goog-material-color-blue-grey-list, 2);
+@brand-goog-material-color-blue-grey-200:    extract(@brand-goog-material-color-blue-grey-list, 3);
+@brand-goog-material-color-blue-grey-300:    extract(@brand-goog-material-color-blue-grey-list, 4);
+@brand-goog-material-color-blue-grey-400:    extract(@brand-goog-material-color-blue-grey-list, 5);
+@brand-goog-material-color-blue-grey-500:    extract(@brand-goog-material-color-blue-grey-list, 6);
+@brand-goog-material-color-blue-grey-600:    extract(@brand-goog-material-color-blue-grey-list, 7);
+@brand-goog-material-color-blue-grey-700:    extract(@brand-goog-material-color-blue-grey-list, 8);
+@brand-goog-material-color-blue-grey-800:    extract(@brand-goog-material-color-blue-grey-list, 9);
+@brand-goog-material-color-blue-grey-900:    extract(@brand-goog-material-color-blue-grey-list, 10);
+
+
+// Input
+// ------------------------
+@brand-input-border-color:         #c2cad8;
+@brand-input-readonly-color:       #edeff3;
+
+
+// If you want the following variables, make new one or use right hand side instead.
+// --------------------------------
+// @font_weight:      @font-weight;
+// @font_weight_bold: @font-weight-bold;
+// @hover_bg: @brand-gray-color-10; //#f5f5f6;
+// @default: @brand-gray-color-30;//#ebebeb;
+// @default_text: @text-normal;
+// @p_text_color: @text-normal;
+// @secondary: @brand-secondary;
+// @secondary_text: @brand-color-white;
+
+@primary: @brand-primary;
+@primary-text: @brand-color-white;
+@success: @brand-success;
+@success-text: @brand-color-white;
+@info: @brand-info;
+@info-text: @brand-color-white;
+@warning: @brand-warning;
+@warning-text: @brand-color-white;
+@danger: @brand-danger;
+@danger-text: @brand-color-white;
+
+
+
+
+
+// Scaffolding
+// -------------------------
+
+@body-bg:               #fff;
+
+// Links
+// -------------------------
+//TODO リンクの色は青なのか、下線引くのか、グレーの文字にするのか決める。
+@link-color:            @text-normal;// リンクの文字色。
+@link-hover-color:      #818da2;// リンクホバー時の文字色。
+@link-color-blue:       #1565C0;// 青色のリンクの文字色。
+@link-color-gray:       @text-light;
+@link-hover-color-gray: @text-lightest;
+@link-color-white:      @text-white;
+//@link-hover-decoration: underline;
+
+// Fonts
+// TODO Make this default and override it based on languages. when its done, remove "メイリオ" and ""
+@font-family-sans-serif:  "メイリオ", sans-serif;
+@font-family-serif:       serif;
+@font-family-monospace:   monospace;
+
+//this value is to make default fant size 10px (16px * 0.625 = 10px)
+@html-font-size:          62.5%;
+//this is for first chrome load. this is not rem, but it's OK. because body tag is root element.
+@body-tag-font-size:      1.4em;
+
+//TODO make px ver to support IE8- and Opera.
+@font-size-xll:           3.0rem; //can be changed
+@font-size-xl:            2.4rem; //can be changed
+@font-size-title:         2.0rem; //can be changed
+@font-size-subhead:       1.7rem; //can be changed
+@font-size-body:          1.4rem; //default font size
+@font-size-caption:       1.2rem; //for supplement information
+@font-size-subcaption:    1.0rem; //only for ruby and unit characters.
+@font-size-app-title:     2.4rem; //only for application title like '社員情報検索' on top left.
+@font-size-captiontrong-value:  3.0rem; //only for emphasize the alphanumeric character. ex. Evaluation score of employee profile
+@icon-font-size-xlll:     6.4rem;//This is for HUE Drive icon.
+@icon-font-size-xll:      3.2rem; // This is for 30rem text font-size
+@icon-font-size-xl:       @font-size-xl; // This is for 20rem text font-size, or icons on tab.
+@icon-font-size-l:        @font-size-title; // This is for 17rem text font-size
+@icon-font-size-m:        1.6rem; // This is for 14rem text font-size
+@icon-font-size-s:        @font-size-body;
+
+
+//font sizes of h1 to h5 was 31, 25, 21, 15, 12 on mock h3 was used as app title and others are not used.
+
+@font-size-h1:            @font-size-xll;
+@font-size-h2:            @font-size-xl;
+@font-size-h3:            @font-size-title;
+@font-size-h4:            @font-size-subhead;
+@font-size-h5:            @font-size-body;
+@font-size-h6:            @font-size-caption;
+
+
+@text-info:          @brand-info;// darken(@brand-info, 10%);
+@text-success:       @brand-success;// darken(@brand-success, 10%);
+@text-warning:       @brand-warning;// darken(@brand-warning, 10%);
+@text-danger:        @brand-danger;// darken(@brand-danger, 10%);
+@icon-color-info-soft:     @brand-info-soft;
+@icon-color-success-soft:  @brand-success-soft;
+@icon-color-warning-soft:  @brand-warning-soft;
+@icon-color-danger-soft:   @brand-danger-soft;
+
+
+//primary color used with the image "polygon" not "sky".
+@text-primary-with-bg-image-polygon : @brand-goog-material-color-cyan-500;
+
+
+
+
+@text-white:              @brand-color-white;
+@text-on-material-accent: @brand-neutral-color-30;
+@text-disabled:           @brand-neutral-color-50;
+@text-lightest:           @brand-neutral-color-60;
+@text-hint:               @brand-neutral-color-70;
+@text-supplemental:       @brand-neutral-color-80;
+@text-light:              @brand-neutral-color-90;
+@text-light-on-gray-bg:   darken(@brand-neutral-color-90, 11%); //if color-90 is #7f7f7f, it would be #636363. Almost same as inbox.com (#616161 on #f2f2f2)
+@text-normal:             @brand-neutral-color-110;
+@text-strong:             @brand-color-black;
+@text-widget-body:        @brand-neutral-color-100;
+@text-primary-on-black-bg:#a1c2fa;
+
+@text-input-placeholder:                @brand-neutral-color-50;
+@text-input-placeholder-focused:        #E3E3E3;
+@text-input-placeholder-error:          #CCBCC2;
+
+@text-category:      #E47911;// 検索条件などのカテゴリタイトルとして使用できます。
+@text-history:       #52188c;
+@required-mark-color:@text-danger;// 入力必須マーク（*）のカラーとして使用します
+
+@face-color-thanks:  #CC4B78;
+@face-color-please:  #f89406;
+@face-color-ok:      #00986d;
+@face-color-angry:   #db0000;
+@face-color-sorry:   #175d9f;
+@face-color-down:    #3ea9c4;
+@face-color-hurry:   #dd4b39;
+
+@color-favorite-star:#fabd11;// ★マークのカラーとして使用します
+
+
+
+// box-shadow for material design
+// -------------------------
+
+@layer-shadow-lvl-0:  0 0 0 0 rgba(0,0,0,0);
+@layer-shadow-lvl-1:  0 1px 1px 0 rgba(0,0,0,.15), 0 0 2px 0 rgba(0,0,0,.2);
+@layer-shadow-lvl-2:  0 2px 4px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.15), 0 -1px 2px -1px rgba(0,0,0,.1);
+@layer-shadow-lvl-3:  0 3px 6px 0 rgba(0,0,0,.25), 0 1px 2px 0 rgba(0,0,0,.15), 0 -1px 4px -1px rgba(0,0,0,.1);
+@layer-shadow-lvl-4:  0 4px 8px 0 rgba(0,0,0,.25), 0 1px 2px 0 rgba(0,0,0,.15), 0 -2px 5px -2px rgba(0,0,0,.08);
+@layer-shadow-lvl-5:  0 5px 9px 0 rgba(0,0,0,.25), 0 1px 4px 0 rgba(0,0,0,.2), 0 -2px 6px -2px rgba(0,0,0,.05);
+@layer-shadow-lvl-6:  0 6px 11px 0 rgba(0,0,0,.25), 0 2px 5px 0 rgba(0,0,0,.2), 0 -3px 6px -3px rgba(0,0,0,.08);
+@layer-shadow-lvl-8:  0 8px 12px 0 rgba(0,0,0,.2), 0 3px 6px 0 rgba(0,0,0,.2), 0 -4px 8px -4px rgba(0,0,0,.1);
+@layer-shadow-lvl-12: 0 10px 12px 0 rgba(0,0,0,.2), 0 3px 6px 0 rgba(0,0,0,.2), 0 -4px 8px -4px rgba(0,0,0,.1);
+@layer-shadow-lvl-16: 0 13px 25px 0 rgba(0,0,0,.2), 0 8px 7px 0 rgba(0,0,0,.15), 0 -5px 10px -5px rgba(0,0,0,.1);
+@layer-shadow-lvl-24: 0 16px 32px 0 rgba(0,0,0,.2), 0 8px 12px 0 rgba(0,0,0,.2), 0 -8px 16px -8px rgba(0,0,0,.08);
+@layer-shadow-lvl-32: 0 20px 40px 0 rgba(0,0,0,.2), 0 16px 16px 0 rgba(0,0,0,.2), 0 -12px 24px -12px rgba(0,0,0,.06);
+@layer-shadow-widget-toggle-button: -3px -4px 8px -4px rgba(0,0,0,0.4);
+
+@shadow-depth-0: @layer-shadow-lvl-0;
+
+//use this for blocks on cards.
+@shadow-depth-half: @layer-shadow-lvl-1;
+
+//use this for cards.
+@shadow-depth-1: @layer-shadow-lvl-2;
+@shadow-depth-1-hover: @layer-shadow-lvl-6;
+
+//use this for title area.
+@shadow-depth-2: @layer-shadow-lvl-3;
+//use this for slide-in room (e.g. MagicPaste room)
+@shadow-depth-slide-in-room: @layer-shadow-lvl-4;
+
+@shadow-depth-3: @layer-shadow-lvl-16;
+@shadow-depth-4: @layer-shadow-lvl-24;
+@shadow-depth-5: @layer-shadow-lvl-32;
+
+//use this for button.
+@shadow-depth-fab: @layer-shadow-lvl-8;
+@shadow-depth-fab-hover: @layer-shadow-lvl-12;
+
+//use this for widget button.
+@shadow-toggle-button: @layer-shadow-widget-toggle-button;
+
+@shadow-depth-globalnavi-searching: @layer-shadow-lvl-5;
+
+//If regulation checker saids no, use this.
+@inherit: inherit;
+
+// background-color
+// -------------------------
+@bg-color-black:    @brand-color-black;// 黒。背景、罫線の色として使用可。
+@bg-gray-color-120: @brand-gray-color-120;
+@bg-gray-color-110: @brand-gray-color-110;
+@bg-gray-color-100: @brand-gray-color-100;
+@bg-gray-color-90:  @brand-gray-color-90;
+@bg-gray-color-80:  @brand-gray-color-80;
+@bg-gray-color-70:  @brand-gray-color-70;
+@bg-gray-color-60:  @brand-gray-color-60;
+@bg-gray-color-50:  @brand-gray-color-50;
+@bg-gray-color-40:  @brand-gray-color-40;
+@bg-gray-color-30:  @brand-gray-color-30;
+@bg-gray-color-20:  @brand-gray-color-20;// 薄く背景色をつけるときに使用。
+@bg-gray-color-10:  @brand-gray-color-10;// とても薄く背景色をつけるときに使用。
+@bg-color-white:    @brand-color-white;// 白。背景、罫線、文字の各色として使用可。
+
+@bg-neutral-color-120: @brand-neutral-color-120;
+@bg-neutral-color-110: @brand-neutral-color-110;
+@bg-neutral-color-100: @brand-neutral-color-100;
+@bg-neutral-color-90:  @brand-neutral-color-90;
+@bg-neutral-color-80:  @brand-neutral-color-80;
+@bg-neutral-color-70:  @brand-neutral-color-70;
+@bg-neutral-color-60:  @brand-neutral-color-60;
+@bg-neutral-color-50:  @brand-neutral-color-50;
+@bg-neutral-color-40:  @brand-neutral-color-40;
+@bg-neutral-color-30:  @brand-neutral-color-30;
+@bg-neutral-color-20:  @brand-neutral-color-20;
+@bg-neutral-color-10:  @brand-neutral-color-10;
+
+@bg-main-color: @bg-gray-color-20;//基本となる背景色、テーマによって実体は調整される
+@bg-layout-main-color: @bg-gray-color-30;
+@bg-main-color-hover: @bg-gray-color-30;
+
+@bg-color-primary:        @brand-primary;
+@bg-color-primary-dark:   #3b77db;
+@bg-color-primary-bright: @brand-primary;
+@bg-color-primary-soft:   #c6dafb;
+@bg-color-primary-pale:   #ecf2fd;
+@bg-color-info:           @brand-info;
+@bg-color-info-dark:      #3b77db;
+@bg-color-info-bright:    @brand-info;
+@bg-color-info-soft:      @brand-info-soft;
+@bg-color-info-pale:      #ecf2fd;
+@bg-color-success:        @brand-success;
+@bg-color-success-dark:   #009886;
+@bg-color-success-bright: @brand-success;
+@bg-color-success-soft:   @brand-success-soft;
+@bg-color-success-pale:   #eaf8f7;
+@bg-color-warning:        @brand-warning;
+@bg-color-warning-dark:   #db9f3b;
+@bg-color-warning-bright: @brand-warning;
+@bg-color-warning-soft:   @brand-warning-soft;
+@bg-color-warning-pale:   #fdf7ec;
+@bg-color-danger:         @brand-danger;
+@bg-color-danger-dark:    #d11b59;
+@bg-color-danger-bright:  @brand-danger;
+@bg-color-danger-soft:    @brand-danger-soft;
+@bg-color-danger-pale:    #fce8ef;
+
+//primary color used with the image "polygon" not "sky".
+@bg-color-primary-with-bg-image-polygon : @brand-goog-material-color-cyan-500;
+
+
+@bg-color-header:     @brand-gray;
+@bg-list-title-color: @bg-gray-color-60;// リストにタイトルをつけるときの背景色。
+@bg-list-hover-color: @bg-gray-color-30;// リストをホバーしたときの背景色。
+@bg-list-active-color:@bg-gray-color-50;// 選択中のリストの背景色。
+@bg-highlight:        spin(@brand-warning, 20%);
+@search-highlight-pale: hsl(hue(@bg-highlight), saturation(@bg-color-warning-pale), (lightness(@bg-color-warning-pale) - 10)); // warning-paleよりちょっとだけ暗めの色変化
+@search-highlight-soft: mix(@bg-highlight, @search-highlight-pale);
+@search-highlight:      @bg-highlight;
+
+
+@bg-color-gold:      #ffb100;// ランキングで「1位」を表すための色。
+@bg-color-silver:    #b6b6b6;// ランキングで「2位」を表すための色。
+@bg-color-bronze:    #aa6d44;// ランキングで「3位」を表すための色。
+
+@history-slidber-point-color: #46a;
+@history-slidber-line-color:  #8ad;
+@tree-map-border-color:       #bdbdbd;
+
+@bg-color-transparent: transparent;// 透明。背景、罫線として使用可。
+
+@bg-color-input-readonly: @brand-input-readonly-color;
+
+@bg-color-clickable-on-colored-background:          rgba(0,0,0,.2);
+@bg-color-clickable-hover-on-colored-background:    rgba(0,0,0,.4);
+// For flat or white type component can have appropriate hover color on white and e6e8ea base color. will be d5d8da.
+@bg-hover-color-for-white-and-flat: darken(@bg-gray-color-20, 10%);
+
+
+@bg-color-auto-complete: #FFF8D4; //color for auto-completion. for more detail, please wait preparation of document.
+
+
+// border-color
+// -------------------------
+@border-color-black:    @brand-color-black;
+@border-gray-color-120: @brand-gray-color-120;
+@border-gray-color-110: @brand-gray-color-110;
+@border-gray-color-100: @brand-gray-color-100;
+@border-gray-color-90:  @brand-gray-color-90;
+@border-gray-color-80:  @brand-gray-color-80;
+@border-gray-color-70:  @brand-gray-color-70;// 「強調」する罫線色。
+@border-gray-color-60:  @brand-gray-color-60;
+@border-gray-color-50:  @brand-gray-color-50;
+@border-gray-color-40:  @brand-gray-color-40;// 「通常」の罫線色。
+@border-gray-color-30:  @brand-gray-color-30;// 「控えめ」な罫線色。
+@border-gray-color-20:  @brand-gray-color-20;
+@border-gray-color-10:  @brand-gray-color-10;
+@border-color-white:    @brand-color-white;
+
+@border-color-primary:        @bg-color-primary;
+@border-color-primary-dark:   @bg-color-primary-dark;
+@border-color-primary-bright: @bg-color-primary-bright;
+@border-color-primary-soft:   @bg-color-primary-soft;
+@border-color-primary-pale:   @bg-color-primary-pale;
+@border-color-info:           @bg-color-info;
+@border-color-info-dark:      @bg-color-info-dark;
+@border-color-info-bright:    @bg-color-info-bright;
+@border-color-info-soft:      @bg-color-info-soft;
+@border-color-info-pale:      @bg-color-info-pale;
+@border-color-success:        @bg-color-success;
+@border-color-success-dark:   @bg-color-success-dark;
+@border-color-success-bright: @bg-color-success-bright;
+@border-color-success-soft:   @bg-color-success-soft;
+@border-color-success-pale:   @bg-color-success-pale;
+@border-color-warning:        @bg-color-warning;
+@border-color-warning-dark:   @bg-color-warning-dark;
+@border-color-warning-bright: @bg-color-warning-bright;
+@border-color-warning-soft:   @bg-color-warning-soft;
+@border-color-warning-pale:   @bg-color-warning-pale;
+@border-color-danger:         @bg-color-danger;
+@border-color-danger-dark:    @bg-color-danger-dark;
+@border-color-danger-bright:  @bg-color-danger-bright;
+@border-color-danger-soft:    @bg-color-danger-soft;
+@border-color-danger-pale:    @bg-color-danger-pale;
+
+
+//primary color used with the image "polygon" not "sky".
+@border-color-primary-with-bg-image-polygon : @brand-goog-material-color-cyan-500;
+
+@border-color-normal:   @border-gray-color-40;
+@border-color-strong:   @border-gray-color-70;
+@border-color-muted:    @border-gray-color-30;
+
+@border-color-transparent:    transparent;
+
+@border-color-input:    @brand-input-border-color;
+
+@default-border-width:        1px;
+
+@marker-color-blue:               saturate(lighten(@bg-color-info, 25%), 0);
+@marker-color-green:              saturate(lighten(@bg-color-success, 30%), -5%);
+@marker-color-yellow:             saturate(lighten(@bg-highlight, 0), 0);
+@marker-color-orange:             saturate(lighten(@bg-color-warning, 15%), 0);
+@marker-color-red:                saturate(lighten(@bg-color-danger, 30%), -5%);
+
+//These colors are only for a kind things which should be distinguished from each other.
+//e.g. bar colors on a graph.
+@bg-color-without-meaning-1:      #fae6ed;
+@border-color-without-meaning-1:  #db306b;
+@bg-color-without-meaning-2:      #ebe8f8;
+@border-color-without-meaning-2:  #5742c8;
+@bg-color-without-meaning-3:      #e7f9f3;
+@border-color-without-meaning-3:  #3f9577;
+@bg-color-without-meaning-4:      #fceee3;
+@border-color-without-meaning-4:  #ed721e;
+@bg-color-without-meaning-5:      #f9fce3;
+@border-color-without-meaning-5:  #97ad27;
+
+@bg-color-material-accent-indigo:     @brand-material-accent-indigo;
+@bg-color-material-accent-green:      @brand-material-accent-green;
+@bg-color-material-accent-red:        @brand-material-accent-red;
+@bg-color-material-accent-orange:     @brand-material-accent-orange;
+@bg-color-material-accent-light-blue: @brand-material-accent-light-blue;
+
+@bg-color-material-indigo:            @brand-material-indigo;
+@bg-color-material-green:             @brand-material-green;
+@bg-color-material-red:               @brand-material-red;
+@bg-color-material-orange:            @brand-material-orange;
+@bg-color-material-light-blue:        @brand-material-light-blue;
+
+@border-color-material-accent-indigo:     @brand-material-accent-indigo;
+
+@border-color-material-indigo:            @brand-material-indigo;
+
+// Deprecated to call these variables directly.
+@font-weight:          400; // = Normal Used for English, Japanese normal.
+@font-weight-medium:   500; //          Used for English bold, Japanese normal.
+@font-weight-bold:     700; // = Bold   Used for English, Japanese bold.
+
+
+@font-size-base:          14px; // Only for Studio-X
+@line-height-base:        1.25; // 20/16
+@line-height-computed:    floor(@font-size-base * @line-height-base);
+
+@inline-component-height: 32px;
+
+//default unit to set padding, margin etc.
+@size-base:               8px;
+
+@component-height-base:   @size-base * 4.5;
+
+@path-base : "../../";
+
+@focus-outline-color:     @brand-focus;
+
+@headings-font-family:    inherit;
+@headings-font-weight:    500;
+@headings-line-height:    1.1;
+@headings-color:          @text-normal;
+@headings-small-color:    @brand-gray-color-80;
+
+@default-scrollbar-width: 17px;
+
+// Components
+// -------------------------
+// Based on 14px font-size and 1.428 line-height (~20px to start)
+
+@padding-base-vertical:          @size-base;
+@padding-base-horizontal:        @size-base * 2;
+
+@padding-large-vertical:         @size-base * 1.5;
+@padding-large-horizontal:       @size-base * 2.5;//16px;
+
+@padding-small-vertical:         @size-base / 2;
+@padding-small-horizontal:       @size-base;
+
+@line-height-large:              1.33;
+@line-height-small:              1.5;
+
+@border-radius-base:             3px;
+@border-radius-large:            3px;
+@border-radius-small:            2px;
+@border-radius-circle:           50%;
+@border-radius-none:             0;
+
+@component-active-color:         #fff;
+@component-active-bg:            @brand-primary;
+@bg-gray-color-component:        @brand-gray-color-10;//#eee;
+@bg-color-info-message:          @brand-gray-color-40;// メッセージパネルinfo背景色
+
+@caret-width-base:               4px;
+@caret-width-large:              5px;
+
+
+
+// Date
+// -------------------------
+@date-color-normal:              @text-normal;
+@date-color-disabled:            @text-light;
+@date-bg-color-disabled:         @border-gray-color-30;
+@date-color-saturday:            @text-info;
+@date-color-saturday-disabled:   mix(@text-info, #fff, 60%);
+@date-color-holiday:             @text-danger;
+@date-color-holiday-disabled:    mix(@text-danger, #fff, 50%);
+@date-color-today:               darken(@brand-gray-color-30, 30%);
+@date-color-selected:            @text-white;
+@date-bg-color-selected:         @border-gray-color-110;
+
+
+
+//Number
+// -------------------------
+@number-color-preferable:        @text-info;
+@number-bg-color-preferable:     @bg-color-info;
+@number-color-unpreferable:      @text-danger;
+@number-bg-color-unpreferable:   @bg-color-danger;
+
+
+
+// Dropdowns
+// -------------------------
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+
+// static Z-index master list
+// -------------------------
+// It is Used as a bird's eye view of components dependent on the z-axis
+// When you need to assign them, please use .layer-zindex-lvl(@lvl, @sub) mixin as written in each comments
+// If you don't know which level is appropriate for your purpose, please refer http://huewiki/mediawiki/index.php/Layer_%26_Shadow page
+@brand-layer-zindex-cellar:                   -1;  // Use .layer-zindex-lvl(celler)
+@brand-layer-zindex-lvl-0:                     0;  // Use .layer-zindex-lvl(0)
+@brand-layer-zindex-lvl-1-lower-1:             1;  // Use .layer-zindex-lvl(1, lower-1)
+@brand-layer-zindex-lvl-1:                     2;  // Use .layer-zindex-lvl(1)
+@brand-layer-zindex-lvl-2:                     7;  // Use .layer-zindex-lvl(2)
+@brand-layer-zindex-lvl-3:                   100;  // Use .layer-zindex-lvl(3)
+@brand-layer-zindex-lvl-3-upper-1:           110;  // Use .layer-zindex-lvl(3, upper-1)
+@brand-layer-zindex-lvl-4-lower-1:           999;  // Use .layer-zindex-lvl(4, lower-1)
+@brand-layer-zindex-lvl-4:                  1000;  // Use .layer-zindex-lvl(4)
+@brand-layer-zindex-lvl-5:                  1010;  // Use .layer-zindex-lvl(5)
+@brand-layer-zindex-lvl-6:                  1030;  // Use .layer-zindex-lvl(6)
+@brand-layer-zindex-lvl-7:                  1032;  // Use .layer-zindex-lvl(7)
+@brand-layer-zindex-lvl-8:                  1034;  // Use .layer-zindex-lvl(8)
+@brand-layer-zindex-lvl-12:                 1035;  // Use .layer-zindex-lvl(12)
+@brand-layer-zindex-lvl-16:                 1037;  // Use .layer-zindex-lvl(16)
+@brand-layer-zindex-lvl-24-lower-2:         1040;  // Use .layer-zindex-lvl(24, lower-2)
+@brand-layer-zindex-lvl-24-lower-1:         1045;  // Use .layer-zindex-lvl(24, lower-1)
+@brand-layer-zindex-lvl-24:                 1050;  // Use .layer-zindex-lvl(24)
+@brand-layer-zindex-lvl-24-upper-1:         1055;  // Use .layer-zindex-lvl(24, upper-1)
+@brand-layer-zindex-lvl-24-upper-2:         1060;  // Use .layer-zindex-lvl(24, upper-2)
+@brand-layer-zindex-lvl-32:                 1080;  // Use .layer-zindex-lvl(32)
+@brand-layer-zindex-lvl-32-upper-1:         1090;  // Use .layer-zindex-lvl(32, upper-1)
+@brand-layer-zindex-loft:                1000000;  // Use .layer-zindex-lvl(loft)
+@brand-layer-zindex-loft-upper-1:        1000001;  // Use .layer-zindex-lvl(loft, upper-1)
+
+@zindex-cardgrid-header:   @brand-layer-zindex-lvl-3;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(3).
+@zindex-hidden-back:       @brand-layer-zindex-cellar;          // DO NOT USE! Instead of this, please use .layer-zindex-lvl(cellar).
+@zindex-main-menu-icon:    @brand-layer-zindex-lvl-0;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(0).
+@zindex-main-menu-navi:    @brand-layer-zindex-lvl-1-lower-1;   // DO NOT USE! Instead of this, please use .layer-zindex-lvl(1, lower-1).
+@zindex-main-menu-label:   @brand-layer-zindex-lvl-1;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(1).
+@zindex-widget-area:       @brand-layer-zindex-lvl-2;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(2).
+@zindex-loadmask:          @brand-layer-zindex-lvl-3;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(3).
+@zindex-fixed-room:        @brand-layer-zindex-lvl-3-upper-1;   // DO NOT USE! Instead of this, please use .layer-zindex-lvl(3, upper-1).
+@zindex-navbar:            @brand-layer-zindex-lvl-4;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(4).
+@zindex-dropdown:          @brand-layer-zindex-lvl-4;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(4).
+@zindex-dropdown-backdrop: @brand-layer-zindex-lvl-4-lower-1;   // DO NOT USE! Instead of this, please use .layer-zindex-lvl(4, lower-1).
+@zindex-dragdrop-target:   @brand-layer-zindex-lvl-4;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(4).
+@zindex-popover:           @brand-layer-zindex-lvl-5;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(5).
+@zindex-tooltip:           @brand-layer-zindex-lvl-6;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(6).
+@zindex-global-navigation: @brand-layer-zindex-lvl-7;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(7).
+@zindex-global-side-menu:  @brand-layer-zindex-lvl-8;           // DO NOT USE! Instead of this, please use .layer-zindex-lvl(8).
+@zindex-toastr:            @brand-layer-zindex-lvl-24-lower-1;  // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24, lower-1).
+@zindex-context-menu:      @brand-layer-zindex-lvl-16;          // DO NOT USE! Instead of this, please use .layer-zindex-lvl(16).
+@zindex-modal-background:  @brand-layer-zindex-lvl-24-lower-2;  // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24, lower-2).
+@zindex-modal:             @brand-layer-zindex-lvl-24;          // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24).
+@zindex-popover-on-modal:  @brand-layer-zindex-lvl-24-upper-1;  // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24, upper-1).
+@zindex-firststepguide:    @brand-layer-zindex-lvl-24;          // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24).
+@zindex-auto-complete:     @brand-layer-zindex-lvl-24-upper-2;  // DO NOT USE! Instead of this, please use .layer-zindex-lvl(24, upper-2).
+
+@zindex-slidepanel:        @brand-layer-zindex-lvl-32-upper-1;  // DO NOT USE! Instead of this, please use .layer-zindex-lvl(32, upper-1).
+@zindex-clearpanel:        @brand-layer-zindex-lvl-32;          // DO NOT USE! Instead of this, please use .layer-zindex-lvl(32).
+
+// PLEASE refrain from using these evils.
+@zindex-navbar-fixed:      @brand-layer-zindex-loft;            // DO NOT USE! Instead of this, please use .layer-zindex-lvl(loft).
+@zindex-dialog-parent:     @brand-layer-zindex-loft-upper-1;    // DO NOT USE! Instead of this, please use .layer-zindex-lvl(loft, upper-1).
+
+// Media queries breakpoints
+// --------------------------------------------------
+
+// Small screen / tablet
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+
+// Medium screen / desktop
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+
+// Large screen / wide desktop
+@screen-lg:                  1441px;
+@screen-lg-min:              @screen-lg;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+@screen-min-desktop:         1280px;
+
+// large  size tablet screen size is between 1279 and 960
+@screen-min-large-tablet:    960px;
+// middle size tablet screen size is between 959  and 768
+@screen-min-middle-tablet:   768px;
+// small  size tablet screen size is between 767  and 600
+@screen-min-small-tablet:    600px;
+
+// Grid system
+// --------------------------------------------------
+
+// Number of columns in the grid system
+@grid-columns:              12;
+// Padding, to be divided by two and applied to the left and right of all columns
+@grid-gutter-width:         30px;
+// Point at which the navbar stops collapsing
+@grid-float-breakpoint:     @screen-sm-min;
+
+
+// Navbar
+// -------------------------
+
+@global-nav-height: @size-base * 7.5;
+
+// Form states and alerts
+// -------------------------
+
+@state-success-text:             darken(@brand-success, 1.25%);//#045702;//#468847;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+@state-success-bg:               mix(@brand-success, #fff, 15%);//mix(@brand-success, #fff, 25%);//#bdedbc;//#dff0d8;
+
+@state-info-text:                darken(@brand-info, 15%);//#2c7ea1;//#3a87ad;
+@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+@state-info-bg:                  mix(@brand-info, #fff, 25%);//mix(@brand-info, #fff, 33%);//#c5e8f7;//#d9edf7;
+
+@state-warning-text:             darken(@brand-warning, 10%);//darken(@brand-warning, 20%);//#574802;//#c09853;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+@state-warning-bg:               mix(@brand-warning, #fff, 17.5%);//mix(@brand-warning, #fff, 25%);//mix(@brand-warning, #fff, 33%);//#ffefa4;//#fcf8e3;
+
+@state-danger-text:              darken(@brand-danger, 2.5%);//#ac1818;//#b94a48;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+@state-danger-bg:                mix(@brand-danger, #fff, 15%);//mix(@brand-danger, #fff, 25%);//#ffc9c9;//#f2dede;
+
+
+
+// Modals
+// -------------------------
+@modal-body-bg-color: #fafafa;
+@modal-backdrop-bg:           #000;//use @bg-color-modal-backdrop if applicable
+@modal-backdrop-opacity:      .5;//use @bg-color-modal-backdrop if applicable
+@bg-color-modal-backdrop:     rgba(0,0,0,.5);
+@bg-color-preview-backdrop:   rgba(0,0,0,.85);
+@bg-color-modal-header: @bg-color-material-accent-indigo;
+@bg-color-modal-header-bright: @brand-goog-material-color-cyan-500;
+
+// Container sizes
+// --------------------------------------------------
+
+// Small screen / tablet
+@container-tablet:             ((720px + @grid-gutter-width));
+@container-sm:                 @container-tablet;
+
+// Medium screen / desktop
+@container-desktop:            ((940px + @grid-gutter-width));
+@container-md:                 @container-desktop;
+
+// Large screen / wide desktop
+@container-large-desktop:      ((1140px + @grid-gutter-width));
+@container-lg:                 @container-large-desktop;
+
+
+// shadows
+// --------------------------------------------------
+@shadow-color:  rgba(0, 0, 0, 0.175);
+@img-cover-color:     rgba(0,0,0,.5);
+
+//shadow of list (dropdown)
+@pulldown-edge-box-shadow:  0 5px 10px rgba(0, 0, 0, 0.2);
+
+// overlay
+@bg-color-overlay-white: rgba(255,255,255,.5);
+
+// ------------------mobile part---------------------
+
+// Body color
+// --------------------------------------------------
+@mobile-body-bg: #F0F1F2;
+
+// Theme color
+// --------------------------------------------------
+@mobile-theme-color:  #00BCD4;
+@mobile-theme-color-dark: #0097a7;
+@mobile-theme-accent-color: #F44336;
+
+// controls
+// --------------------------------------------------
+@mobile-controls-color: @mobile-theme-color;
+@mobile-controls-color-light: mix(@mobile-controls-color, #fff, 50%);
+@mobile-controls-color-dark: @mobile-theme-color-dark;
+@mobile-label-hover-color: @brand-gray-color-100;
+@mobile-controls-text-color-light: fade(@text-white, 60%);
+
+// common size
+// --------------------------------------------------
+@toolbarSize : 56px;
+@navbarSize: 56px;
+@tabbarLabelsSize: 50px;
+
+@toolbarDuration: 400ms;
+
+// common z-index
+// --------------------------------------------------
+@zindex-mobile-status-bar : 10000;
+@zindex-mobile-panel : 10400;
+@zindex-mobile-welcome-page : 10500;
+@zindex-mobile-login : 10600;
+@zindex-mobile-notification : 10700;
+@zindex-mobile-feedback:10800;
+@zindex-mobile-overlay:10900;
+@zindex-mobile-modal:10910;
+@zindex-mobile-first-step-guide:10920;
+@zindex-mobile-list-border : 15;
+
+
+// colors
+// --------------------------------------------------
+@color-mobile-list-border: rgba(0,0,0,0.12);
+
+@overlay-background-color: fade(@bg-gray-color-10, 90%);
+
+@bg-color-red-material-active: darken(@bg-color-material-red,16%);
+
+
+// icon size (only for mobile)
+// --------------------------------------------------
+@icon-font-size-ss: 1.2rem;
+
+// mobile button size
+@mobile-button-height: 36px;
+@mobile-button-line-height: 36px;
+@mobile-button-min-width: 88px;

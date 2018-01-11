@@ -2,8 +2,8 @@
 
 import Vue from 'vue';
 import Router from 'vue-router';
-import LoginPage from './pages/LoginPage.vue';
-import B from './components/B.vue';
+import LoginPage from '../pages/LoginPage.vue';
+import Hello from '../components/Hello.vue';
 
 Vue.use(Router);
 
@@ -17,7 +17,7 @@ export function createRouter() {
       },
       {
         path: '/main',
-        component: B,
+        component: Hello,
       }
     ],
     base: '/app/',

@@ -7,14 +7,9 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1513774152400_3296';
 
   // middleware
-  config.middleware = [];
-
-  // disable csrf to test on post man
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  };
+  config.middleware = [
+    'dtAuth',
+  ];
 
   config.bcrypt = {
     saltRounds: 10,
@@ -38,6 +33,11 @@ module.exports = appInfo => {
   config.oAuth2Server = {
     debug: config.env === 'local',
     grants: [ 'password', 'client_credentials', 'refresh_token' ],
+  };
+
+  config.dtAuth = {
+    match: /^\/app\/main/,
+    redirectUrl: '/app/login',
   };
 
   return config;

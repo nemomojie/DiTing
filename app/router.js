@@ -11,6 +11,7 @@ module.exports = app => {
   router.redirect('/app', '/app/main');
   router.get('/app/login', controller.home.appIndex);
   router.get('/app/main', controller.home.appIndex);
+  router.get('/userinfo', controller.user.getCurrentUserInfo);
 
   app.restful('resources', [ 'all' ], controller.sample.resource);
 
@@ -26,7 +27,9 @@ module.exports = app => {
 
   // oauth
   // router.get('/login', controller.home.loginPage);
-  router.post('/login', app.passport.authenticate('local', { successRedirect: '/app/main' }));
+  // router.post('/login', app.passport.authenticate('local', { successRedirect: '/app/main' }));
+  router.post('/login', controller.home.login);
+
   // TODO callback after login
   router.get('/authCallback', controller.home.index);
   router.get('/logout', controller.home.logout);

@@ -7,23 +7,23 @@ module.exports = app => {
       type: String,
       required: true,
       unique: true,
-      index: true
+      index: true,
     },
     clientSecret: {
       type: String,
-      required: true
+      required: true,
     },
     grants: [{
-      type: String
+      type: String,
     }],
     redirectUris: [{
-      type: String
+      type: String,
     }],
     username: {
-      type: String
-    }
+      type: String,
+    },
   }, {
-    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
+    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' },
   });
-  return mongoose.model('Client', ClientSchema)
+  return mongoose.model('Client', ClientSchema);
 };
