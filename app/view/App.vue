@@ -11,7 +11,7 @@
 
 <script>
   import LoginPage from './pages/LoginPage.vue';
-  import Hello from './components/Hello.vue';
+  import MainPage from './pages/MainPage.vue';
   import MobileVueSimpleDialog from './components/MobileVueSimpleDialog.vue';
 
   export default {
@@ -21,7 +21,7 @@
     },
     components: {
       LoginPage,
-      Hello,
+      MainPage,
       MobileVueSimpleDialog,
     },
     methods: {
@@ -36,3 +36,5 @@
     height: 100%;
   }
 </style>
+
+<style src="../public/font/material-icons/material-icons.css"/>

@@ -3,12 +3,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import LoginPage from '../pages/LoginPage.vue';
-import Hello from '../components/Hello.vue';
+import MainPage from '../pages/MainPage.vue';
 
 Vue.use(Router);
 
 export function createRouter() {
-  return new Router({
+  const router = new Router({
     mode: 'history',
     routes: [
       {
@@ -17,9 +17,11 @@ export function createRouter() {
       },
       {
         path: '/main',
-        component: Hello,
+        component: MainPage,
       }
     ],
     base: '/app/',
   });
+
+  return router;
 }

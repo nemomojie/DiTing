@@ -5,8 +5,10 @@ import {createApp} from '../factory/app-factory'
 export default context => {
   return new Promise((resolve, reject) => {
     const {app, router, store} = createApp();
-    let targetUrl = context.url.replace('/app', '');
-    router.push(targetUrl);
+
+    injectInitialData(store, context);
+    initRouter(router, context);
+
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents();
       // 匹配不到的路由，执行 reject 函数，并返回 404
@@ -36,4 +38,29 @@ export default context => {
       }
     }, reject);
   });
+}
+
+function injectInitialData(store, context) {
+  const userInfo = {
+    username: null,
+    isLogin: context.isAuthenticated()
+  };
+  if (userInfo.isLogin) {
+    userInfo.username = context.user.username;
+  }
+  store.commit('login', userInfo);
+}
+
+function initRouter(router, context) {
+  let targetUrl = context.url.replace('/app', '');
+  // router.push(targetUrl);
+  const auth = context.isAuthenticated();
+
+  if (auth && targetUrl === '/login') {
+    router.push('/main');
+  } else if (!auth && targetUrl !== '/login') {
+    router.push('/login');
+  } else {
+    router.push(targetUrl);
+  }
 }

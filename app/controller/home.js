@@ -24,15 +24,11 @@ class HomeController extends BaseController {
   }
 
   async login() {
-    const body = this.ctx.request.body;
-    if (body.username) {
-      const user = await this.service.user.getByName(body.username);
-      if (user && this.ctx.compare(body.password, user.password)) {
-        this.app.passport.login(user);
-        this.success(user);
-      }
+    if (this.ctx.isAuthenticated()) {
+      this.success();
+    } else {
+      this.error('Username or password is wrong');
     }
-    this.error('Username or password is wrong');
   }
 
   async logout() {

@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const clientBase = require('./client-config.js');
-const devBase = require('./base-client-dev');
+const devBase = require('./base-config-dev');
 
 module.exports = merge(clientBase, devBase, {
   entry: [ 'webpack-hot-middleware/client' ],

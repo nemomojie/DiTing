@@ -17,6 +17,21 @@ export function createApp() {
   const router = createRouter();
   const store = createStore();
   sync(store, router);
+
+  router.beforeEach((to, from, next) => {
+    if (store.state.userInfo.isLogin && to.path === '/login') {
+      next({
+        path: '/main',
+      })
+    } else if (!store.state.userInfo.isLogin && to.path !== '/login') {
+      next({
+        path: '/login',
+      })
+    } else {
+      next();
+    }
+  });
+
   const app = new Vue({
     store,
     router,

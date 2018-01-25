@@ -11,11 +11,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|jpeg|svg|ttf|woff2|woff|eot)$/,
+        test: /\.(ttf|woff2|woff|eot)$/,
         use: [
           {
             loader: 'file-loader',
-            options: {},
+            options: {
+            },
           },
         ],
       },
@@ -28,4 +29,6 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+  ],
 };

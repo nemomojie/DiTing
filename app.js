@@ -21,8 +21,11 @@ module.exports = app => {
     app.passport.verify(async (ctx, user) => {
       if (user.provider === 'local') {
         const existsUser = await ctx.service.user.getByName(user.username);
-        if (existsUser && ctx.compare(user.password, existsUser.password)) {
-          return existsUser;
+        if (existsUser) {
+          const rightPassword = await ctx.compare(user.password, existsUser.password);
+          if (rightPassword) {
+            return existsUser;
+          }
         }
       }
       return null;

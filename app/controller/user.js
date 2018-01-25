@@ -35,10 +35,6 @@ class UserController extends BaseController {
     }
     this.success(user);
   }
-
-  getCurrentUserInfo() {
-    this.success({ username: 'momojie' });
-  }
 }
 
 module.exports = UserController;
