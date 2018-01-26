@@ -2,24 +2,28 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   async create(user) {
-    return (await this.app.model.User({
+    const model = this.app.model('User');
+    return (await model({
       username: user.username,
       password: await this.ctx.genHash(user.password),
       name: user.name,
     }).save()).toObject();
   }
   async getById(id) {
-    return this.app.model.User.findOne({
+    const model = this.app.model('User');
+    return model.findOne({
       _id: id,
     });
   }
   async getByName(username) {
-    return this.app.model.User.findOne({
+    const model = this.app.model('User');
+    return model.findOne({
       username,
     }).lean();
   }
   async updatePasswordByOldPassword(id, oldPassword, newPassword) {
-    return this.app.model.User.findOneAndUpdate({
+    const model = this.app.model('User');
+    return model.findOneAndUpdate({
       _id: id,
       password: await this.ctx.genHash(oldPassword),
     }, {
@@ -27,15 +31,19 @@ class UserService extends Service {
     }, { new: true }).lean();
   }
   async delete(id) {
-    return this.app.model.User.remove({
+    const model = this.app.model('User');
+    return model.remove({
       _id: id,
     });
   }
   async deleteByName(username) {
-    return this.app.model.User.remove({
+    const model = this.app.model('User');
+    return model.remove({
       username,
     });
   }
+
+
 }
 
 module.exports = UserService;

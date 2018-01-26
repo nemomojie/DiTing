@@ -1,14 +1,13 @@
 'use strict';
 
 module.exports = appInfo => {
-  const config = exports = {};
+  const config = {};
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1513774152400_3296';
 
   // middleware
   config.middleware = [
-    'dtAuth',
   ];
 
   config.bcrypt = {
@@ -17,7 +16,9 @@ module.exports = appInfo => {
 
   // mongo config
   config.mongoose = {
-    url: 'mongodb://127.0.0.1/di-ting',
+    url: 'mongodb://localhost/di-ting',
+    options: {
+    },
   };
 
   // redis config
@@ -33,11 +34,6 @@ module.exports = appInfo => {
   config.oAuth2Server = {
     debug: config.env === 'local',
     grants: [ 'password', 'client_credentials', 'refresh_token' ],
-  };
-
-  config.dtAuth = {
-    match: /^\/app\/main/,
-    redirectUrl: '/app/login',
   };
 
   return config;

@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "eggPlugin": {
     "name": "eggVueWebpack",
-    "dependencies": [],
+    "dependencies": {
+      "webpack": "^3.10.0",
+      "webpack-dev-middleware": "^2.0.3"
+    },
     "optionalDependencies": [],
     "env": [ "local" ]
   }

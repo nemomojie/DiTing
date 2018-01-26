@@ -1,10 +1,12 @@
 'use strict';
 
+const path = require('path');
+
 // had enabled by egg
 // exports.static = true;
-exports.mongoose = {
+exports.eggMongoosePlugin = {
   enable: true,
-  package: 'egg-mongoose',
+  path: path.join(__dirname, '../lib/plugin/egg-mongoose-plugin'),
 };
 
 exports.redis = {

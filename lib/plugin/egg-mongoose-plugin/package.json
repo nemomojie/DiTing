@@ -1,0 +1,12 @@
+{
+  "name": "egg-mongoose-plugin",
+  "version": "0.0.1",
+  "eggPlugin": {
+    "name": "eggMongoosePlugin",
+    "dependencies": {
+      "mongoose": "^5.0.1"
+    },
+    "optionalDependencies": [],
+    "env": [ "prod", "local" ]
+  }
+}
